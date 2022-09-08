@@ -8,22 +8,28 @@ public class PlayerMovement : MonoBehaviour
     
     public float maxSpeed;
     public float accel;
-    public float decel;
-    
-    public float wSpeed;
-    public float sSpeed;
-    public float aSpeed;
-    public float dSpeed;
+    public float jumpSpeed;
+    public Vector3 turnSpeed;
 
     public bool w;
     public bool s;
     public bool a;
     public bool d;
+    public bool space;
+    public bool onGround;
+
+    Rigidbody _rigidbody;
+    int _layerMask = 1 << 8;
+    
     void Start()
     {
         maxSpeed = 10;
-        accel = 30;
-        decel = 20;
+        accel = 50;
+        jumpSpeed = 350;
+        turnSpeed = new Vector3(0,100,0);
+
+        _rigidbody = GetComponent<Rigidbody>();
+        _layerMask = ~_layerMask;
     }
 
     void Update()
@@ -35,95 +41,65 @@ public class PlayerMovement : MonoBehaviour
         a = Input.GetKey("a");
         
         d = Input.GetKey("d");
+        
+        space = Input.GetKey("space");
+
     }
 
     private void FixedUpdate()
     {
         
+        // W - Forward \\
         if (w)
         {
-            if (wSpeed < maxSpeed)
-            {
-                wSpeed += accel * Time.deltaTime;
-            }
-            transform.Translate(Vector3.forward * (wSpeed * Time.deltaTime));
+            _rigidbody.velocity = transform.forward * maxSpeed;
         }
-        else
-        {
-            if (wSpeed - accel / decel > 0)
-            {
-                wSpeed -= accel / decel;
-                transform.Translate(Vector3.forward * (wSpeed * Time.deltaTime));
-            }
-            else
-            {
-                wSpeed = 0;
-            }
-        }
+        // else if (_rigidbody.GetPointVelocity(_rigidbody.position).z - accel * Time.fixedDeltaTime > 0)
+        // {
+        //     _rigidbody.AddForce(transform.forward * -accel, ForceMode.Acceleration);
+        // }
         
+        // S - Back \\
         if (s)
         {
-            if (sSpeed < maxSpeed)
-            {
-                sSpeed += accel * Time.deltaTime;
-            }
-            transform.Translate(Vector3.back * (sSpeed * Time.deltaTime));
+            _rigidbody.velocity = transform.forward * -maxSpeed;
         }
-        else
-        {
-            if (sSpeed - accel / decel > 0)
-            {
-                sSpeed -= accel / decel;
-                transform.Translate(Vector3.back * (sSpeed * Time.deltaTime));
-            }
-            else
-            {
-                sSpeed = 0;
-            }
-        }
-
+        // else if (_rigidbody.GetPointVelocity(_rigidbody.position).z + accel * Time.fixedDeltaTime < 0)
+        // {
+        //     _rigidbody.AddForce(transform.forward * accel, ForceMode.Acceleration);
+        // }
+        
+        // A - Rotate left \\
         if (a)
         {
-            if (aSpeed < maxSpeed)
-            {
-                aSpeed += accel * Time.deltaTime;
-            }
-            transform.Translate(Vector3.left * (aSpeed * Time.deltaTime));
+            Quaternion deltaRotation = Quaternion.Euler(-turnSpeed * Time.fixedDeltaTime);
+            _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
         }
-        else
-        {
-            if (aSpeed - accel / decel > 0)
-            {
-                aSpeed -= accel / decel;
-                transform.Translate(Vector3.left * (aSpeed * Time.deltaTime));
-            }
-            else
-            {
-                aSpeed = 0;
-            }
-            
-        }
+        // else if (_rigidbody.GetPointVelocity(_rigidbody.position).x + accel * Time.fixedDeltaTime < 0)
+        // {
+        //     _rigidbody.AddForce(transform.right * accel, ForceMode.Acceleration);
+        // }
         
+        // D - Rotate right \\
         if (d)
         {
-            if (dSpeed < maxSpeed)
-            {
-                dSpeed += accel * Time.deltaTime;
-            }
-            transform.Translate(Vector3.right * (dSpeed * Time.deltaTime));
+            Quaternion deltaRotation = Quaternion.Euler(turnSpeed * Time.fixedDeltaTime);
+            _rigidbody.MoveRotation(_rigidbody.rotation * deltaRotation);
         }
-        else
+        // else if (_rigidbody.GetPointVelocity(_rigidbody.position).x - accel * Time.fixedDeltaTime > 0)
+        // {
+        //     _rigidbody.AddForce(transform.right * -accel, ForceMode.Acceleration);
+        // }
+        //
+        // // SPACE - Up \\
+        if (space)
         {
-            if (dSpeed - accel / decel > 0)
+            onGround = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1, _layerMask); ;
+        
+            if (onGround)
             {
-                dSpeed -= accel / decel;
-                transform.Translate(Vector3.right * (dSpeed * Time.deltaTime));
+                _rigidbody.AddForce(transform.up * jumpSpeed);    
             }
-            else
-            {
-                dSpeed = 0;
-            }
-            
         }
 
     }
