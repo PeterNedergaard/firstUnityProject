@@ -54,20 +54,20 @@ public class PlayerMovement : MonoBehaviour
         {
             _rigidbody.velocity = transform.forward * maxSpeed;
         }
-        // else if (_rigidbody.GetPointVelocity(_rigidbody.position).z - accel * Time.fixedDeltaTime > 0)
-        // {
-        //     _rigidbody.AddForce(transform.forward * -accel, ForceMode.Acceleration);
-        // }
+        else if (_rigidbody.GetPointVelocity(_rigidbody.position).z - accel * Time.fixedDeltaTime > 0)
+        {
+            _rigidbody.AddForce(transform.forward * -accel, ForceMode.Acceleration);
+        }
         
         // S - Back \\
         if (s)
         {
             _rigidbody.velocity = transform.forward * -maxSpeed;
         }
-        // else if (_rigidbody.GetPointVelocity(_rigidbody.position).z + accel * Time.fixedDeltaTime < 0)
-        // {
-        //     _rigidbody.AddForce(transform.forward * accel, ForceMode.Acceleration);
-        // }
+        else if (_rigidbody.GetPointVelocity(_rigidbody.position).z + accel * Time.fixedDeltaTime < 0)
+        {
+            _rigidbody.AddForce(transform.forward * accel, ForceMode.Acceleration);
+        }
         
         // A - Rotate left \\
         if (a)
