@@ -33,12 +33,10 @@ public class V2PlayerMovement : MonoBehaviour
 
         move *= playerSpeed * Input.GetAxis("Vertical");
         
-        
 
         Vector3 move2 = transform.TransformDirection(Vector3.right);
 
         move2 *= playerSpeed * Input.GetAxis("Horizontal");
-        
         
 
         transform.Rotate(Vector3.up,2f * Input.GetAxis("Horizontal"));
@@ -57,9 +55,9 @@ public class V2PlayerMovement : MonoBehaviour
         }
 
         move.y = verticalVelocity;
-
+        
+        // Apparently, you arent supposed to call cc.Move more than once. Living on the edge...
         cc.Move(move * Time.deltaTime);
-
         cc.Move(move2 * Time.deltaTime);
     }
 
