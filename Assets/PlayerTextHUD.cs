@@ -20,24 +20,25 @@ public class PlayerTextHUD : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
+        string text;
         
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
         {
-            string text = hit.transform.name;
-            
-            if (text.Equals("Plane"))
-            {
-                text = "";
-            }
-            
+            // To help save resources. Idk if it matters much
             if (!hit.transform.name.Equals(lookAtText.text))
             {
+                // In theory, if it has a barrel, it's a gun
+                if (hit.transform.Find("Barrel"))
+                {
+                    text = hit.transform.name;
+                }
+                else
+                {
+                    text = "";
+                }
+
                 lookAtText.text = text;
-            }   
-        }
-        else
-        {
-            lookAtText.text = "";
+            }
         }
     }
 }

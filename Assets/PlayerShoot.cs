@@ -11,14 +11,17 @@ public class PlayerShoot : MonoBehaviour
 
     void Start()
     {
-        gunObject = gameObject.transform.Find("GunObject").GetChild(0).gameObject;
-        gunScript = gunObject.GetComponent<GunScript>();
+        if (gameObject.transform.Find("GunObject").childCount >= 1)
+        {
+            gunObject = gameObject.transform.Find("GunObject").GetChild(0).gameObject;
+            gunScript = gunObject.GetComponent<GunScript>();
+        }
     }
 
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && gunScript)
         {
             gunScript.Shoot();
         }

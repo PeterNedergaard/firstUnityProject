@@ -16,6 +16,7 @@ public class V2PlayerMovement : MonoBehaviour
     private float playerSpeed = 7;
     private float jumpHeight = 3;
     private float gravityValue = 9.81f;
+    private float mouseSensitivity = 2;
     private int layerMask = 1 << 8;
     private Vector2 turn;
 
@@ -29,21 +30,22 @@ public class V2PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Front and backwards
         Vector3 move = transform.TransformDirection(Vector3.forward);
 
         move *= playerSpeed * Input.GetAxis("Vertical");
-        
 
+        // Right and left
         Vector3 move2 = transform.TransformDirection(Vector3.right);
 
         move2 *= playerSpeed * Input.GetAxis("Horizontal");
-        
 
-        transform.Rotate(Vector3.up,2f * Input.GetAxis("Horizontal"));
+        
+        // transform.Rotate(Vector3.up,2f * Input.GetAxis("Horizontal"));
+        
         
         verticalVelocity -= gravityValue * Time.deltaTime;
-        
-        
+
         if (groundedPlayer && verticalVelocity < 0)
         {
             verticalVelocity = 0;
@@ -53,8 +55,19 @@ public class V2PlayerMovement : MonoBehaviour
         {
             verticalVelocity += Mathf.Sqrt(jumpHeight * gravityValue);
         }
-
+        
         move.y = verticalVelocity;
+        
+        
+        // Mouse movement
+        turn.x += Input.GetAxis("Mouse X") * mouseSensitivity;
+        turn.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
+
+        if (turn.y < -90) turn.y = -90;
+        if (turn.y > 90) turn.y = 90;
+
+        transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);
+        
         
         // Apparently, you arent supposed to call cc.Move more than once. Living on the edge...
         cc.Move(move * Time.deltaTime);
@@ -65,14 +78,5 @@ public class V2PlayerMovement : MonoBehaviour
     void Update()
     {
         groundedPlayer = Physics.Raycast(transform.position, Vector3.down, 1 + cc.skinWidth, layerMask);
-        
-        turn.x += Input.GetAxis("Mouse X");
-        
-        if (turn.y + Input.GetAxis("Mouse Y") is >= -90 and <= 90)
-        {
-            turn.y += Input.GetAxis("Mouse Y");
-        }
-        
-        transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);
     }
 }

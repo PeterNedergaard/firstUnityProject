@@ -16,8 +16,7 @@ public class PlayerGunInteract : MonoBehaviour
 
         if (Input.GetKeyDown("e"))
         {
-
-            if (gameObject.GetComponent<PlayerShoot>().gunObject)
+            if (gameObject.transform.Find("GunObject").childCount >= 1)
             {
                 RemoveWeapon();
             }

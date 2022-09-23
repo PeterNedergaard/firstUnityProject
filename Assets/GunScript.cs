@@ -6,7 +6,7 @@ public class GunScript : MonoBehaviour
 {
     public GameObject bulletPrefab;
     private Vector3 bulletVector;
-    private float bulletForce = 75;
+    private float bulletForce = 10;
     private GameObject barrelObject;
     private float bulletSpawnOffset;
     private List<GameObject> bulletList = new();
@@ -25,21 +25,24 @@ public class GunScript : MonoBehaviour
 
     public void Shoot()
     {
+        // In short: Spawn bullet, add to list, add force 
+        
         bulletVector = barrelObject.transform.position + barrelObject.transform.forward * bulletSpawnOffset;
-
         GameObject currBullet = Instantiate(bulletPrefab, bulletVector, Quaternion.identity);
+        
         bulletList.Add(currBullet);
         
-        Rigidbody currBulletRb = currBullet.AddComponent<Rigidbody>();
-        currBulletRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        Rigidbody currBulletRb = currBullet.GetComponent<Rigidbody>();
             
         currBulletRb.AddForce(barrelObject.transform.forward * bulletForce, ForceMode.Impulse);
-
+        
+        
+        // Hopefully saves resources
         if (bulletList.Count > 15)
         {
-            var bulletToDestroy = bulletList[0];
+            Destroy(bulletList[0]);
             bulletList.Remove(bulletList[0]);
-            Destroy(bulletToDestroy);
         }
+        
     } 
 }
