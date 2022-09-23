@@ -9,7 +9,6 @@ public class GunScript : MonoBehaviour
     private float bulletForce = 10;
     private GameObject barrelObject;
     private float bulletSpawnOffset;
-    private List<GameObject> bulletList = new();
 
     void Start()
     {
@@ -25,24 +24,13 @@ public class GunScript : MonoBehaviour
 
     public void Shoot()
     {
-        // In short: Spawn bullet, add to list, add force 
+        // In short: Spawn bullet, add force 
         
         bulletVector = barrelObject.transform.position + barrelObject.transform.forward * bulletSpawnOffset;
         GameObject currBullet = Instantiate(bulletPrefab, bulletVector, Quaternion.identity);
-        
-        bulletList.Add(currBullet);
-        
+
         Rigidbody currBulletRb = currBullet.GetComponent<Rigidbody>();
             
         currBulletRb.AddForce(barrelObject.transform.forward * bulletForce, ForceMode.Impulse);
-        
-        
-        // Hopefully saves resources
-        if (bulletList.Count > 15)
-        {
-            Destroy(bulletList[0]);
-            bulletList.Remove(bulletList[0]);
-        }
-        
     } 
 }

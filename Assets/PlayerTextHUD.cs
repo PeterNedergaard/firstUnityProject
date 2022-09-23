@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerTextHUD : MonoBehaviour
 {
     private GameObject lookAtTextObject;
-    [NonSerialized] public Text lookAtText;
+    private Text lookAtText;
 
     void Start()
     {

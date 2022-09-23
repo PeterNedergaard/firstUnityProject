@@ -1,18 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float maxHealth = 100;
+    [NonSerialized] public float health;
+    private bool dead = false;
+
     void Start()
     {
-        
+        health = maxHealth;
     }
 
-    // Update is called once per frame
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet") && !dead)
+        {
+            health -= collision.gameObject.GetComponent<BulletBehavior>().bulletDamage;
+        }
+    }
+
     void Update()
     {
-        
+        if (health <= 0 && !dead)
+        {
+            health = 0;
+            GetComponent<EnemyBehaviour>().Die();
+            dead = true;
+        }
     }
+    
 }
