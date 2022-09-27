@@ -9,4 +9,4 @@ This version of the game has no storyline or purpose yet. However, it features s
 - Different types of ammunition
 - You can easily add new weapons. The only requirement is an invisible object on the weapon called "Barrel"
 - You can easily add new ammunition with different values, like mass, damage, size, etc.
-- Enemy is a work in progress, but he will chase you, and you can kill him
+- Enemy is a work in progress, but he will chase you, and you can kill him. He can't hurt you though, don't worry
