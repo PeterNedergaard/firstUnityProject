@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private float maxHealth = 100;
+    public float maxHealth = 100;
     [NonSerialized] public float health;
     private bool dead = false;
-
+    
     void Start()
     {
         health = maxHealth;
@@ -19,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet") && !dead)
         {
             health -= collision.gameObject.GetComponent<BulletBehavior>().bulletDamage;
+            GetComponent<EnemyInfoUI>().UpdateHPbar();
         }
     }
 

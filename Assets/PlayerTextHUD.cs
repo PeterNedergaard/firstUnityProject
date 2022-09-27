@@ -30,7 +30,7 @@ public class PlayerTextHUD : MonoBehaviour
                 // In theory, if it has a barrel, it's a gun
                 if (hit.transform.Find("Barrel"))
                 {
-                    text = hit.transform.name;
+                    text = "Press 'E' to pick up " + hit.transform.name;
                 }
                 else
                 {
