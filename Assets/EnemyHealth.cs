@@ -8,16 +8,20 @@ public class EnemyHealth : MonoBehaviour
 {
     public float maxHealth = 100;
     [NonSerialized] public float health;
-    private bool dead = false;
+    private EnemyInfoUI enemyInfoUI;
+    private EnemyBehaviour enemyBehaviour;
     
     void Start()
     {
         health = maxHealth;
+        enemyInfoUI = GetComponent<EnemyInfoUI>();
+        enemyBehaviour = GetComponent<EnemyBehaviour>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bullet") && !dead)
+        enemyInfoUI.hpBarTimer = Time.unscaledTime;
+        if (collision.gameObject.CompareTag("Bullet") && !enemyBehaviour.dead)
         {
             health -= collision.gameObject.GetComponent<BulletBehavior>().bulletDamage;
             GetComponent<EnemyInfoUI>().UpdateHPbar();
@@ -26,11 +30,11 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-        if (health <= 0 && !dead)
+        if (health <= 0 && !enemyBehaviour.dead)
         {
             health = 0;
             GetComponent<EnemyBehaviour>().Die();
-            dead = true;
+            transform.Find("Canvas/HPbars").gameObject.SetActive(false);
         }
     }
     

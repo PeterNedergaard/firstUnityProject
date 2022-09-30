@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,7 @@ public class EnemyBehaviour : MonoBehaviour
     private Rigidbody rb;
     private Transform player;
     private float aggroRange = 15f;
-    private bool dead = false;
-    
+    [NonSerialized] public bool dead;
     
     
     void Start()

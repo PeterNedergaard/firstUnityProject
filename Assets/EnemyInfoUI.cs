@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,37 +6,48 @@ using UnityEngine.UI;
 
 public class EnemyInfoUI : MonoBehaviour
 {
-    private Text healthText;
     private Camera cam;
 
-    private RectTransform hpBarGreen;
-    private RectTransform hpBarRed;
-    private float hpBarMaxWidth;
+    private Slider hpBarSlider;
+    private float sliderMaxValue;
     private RectTransform hpBars;
+    [NonSerialized] public float hpBarTimer;
+    [NonSerialized] public float hpBarFadeTime = 1;
+    private EnemyBehaviour enemyBehaviour;
+
 
     void Start()
     {
-        healthText = transform.Find("Canvas/HealthText").GetComponent<Text>();
-        healthText.transform.position = new Vector3(100,100);
         cam = Camera.main;
-        
+        enemyBehaviour = GetComponent<EnemyBehaviour>();
+
         hpBars = transform.Find("Canvas/HPbars").GetComponent<RectTransform>();
-        hpBarGreen = hpBars.Find("HPbarGreen").GetComponent<RectTransform>();
-        hpBarRed = hpBars.Find("HPbarRed").GetComponent<RectTransform>();
-        hpBarMaxWidth = hpBarRed.rect.width;
+        hpBarSlider = transform.Find("Canvas/HPbars").GetComponent<Slider>();
+        sliderMaxValue = 1;
     }
     
     
     void Update()
     {
-        healthText.text = GetComponent<EnemyHealth>().health.ToString();
         Vector3 worldPos = transform.position;
-        
         worldPos.y += transform.localScale.y + 0.5f;
-        healthText.transform.position = cam.WorldToScreenPoint(worldPos);
         
-        // hpBars.transform.position = cam.WorldToScreenPoint(worldPos);
-        // hpBars.anchoredPosition = cam.WorldToScreenPoint(worldPos);
+        hpBars.position  = cam.WorldToScreenPoint(worldPos);
+        
+        if (hpBars.position.z < 0)
+        {
+            hpBars.position *= -1;
+        }
+
+        if (Time.unscaledTime > hpBarTimer + hpBarFadeTime)
+        {
+            hpBars.gameObject.SetActive(false);
+        }
+        else if (!enemyBehaviour.dead)
+        {
+            hpBars.gameObject.SetActive(true);
+        }
+        
     }
 
 
@@ -46,10 +58,8 @@ public class EnemyInfoUI : MonoBehaviour
         float currHp = enemyHealth.health;
         float maxHp = enemyHealth.maxHealth;
         
-        float barWidth = hpBarMaxWidth * (currHp/maxHp);
-
-        Debug.Log(barWidth);
+        float sliderValue = sliderMaxValue * (currHp/maxHp);
         
-        hpBarGreen.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, -20, barWidth);
+        hpBarSlider.value = sliderValue;
     }
 }
