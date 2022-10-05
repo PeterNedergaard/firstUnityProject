@@ -5,25 +5,20 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    [NonSerialized] public GameObject gunObject;
-    [NonSerialized] public GunScript gunScript;
-
-
+    private PlayerGunInteract playerGunInteract;
+    private PlayerReload playerReload;
     void Start()
     {
-        if (gameObject.transform.Find("GunObject").childCount >= 1)
-        {
-            gunObject = gameObject.transform.Find("GunObject").GetChild(0).gameObject;
-            gunScript = gunObject.GetComponent<GunScript>();
-        }
+        playerGunInteract = GetComponent<PlayerGunInteract>();
+        playerReload = GetComponent<PlayerReload>();
     }
 
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && gunScript)
+        if (Input.GetMouseButton(0) && playerGunInteract.gunScript && playerReload.magParent)
         {
-            gunScript.Shoot();
+            playerGunInteract.gunScript.Shoot();
         }
     }
 }

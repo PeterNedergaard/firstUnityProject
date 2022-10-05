@@ -1,13 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerGunInteract : MonoBehaviour
 {
-    
-    
+    private GameObject gunObjectParent;
+    [NonSerialized] public GameObject gunObject;
+    [NonSerialized] public GunScript gunScript;
+    [NonSerialized] public bool pickUp;
+    private PlayerReload playerReload;
+
     void Start()
     {
+        gunObjectParent = transform.Find("GunObject").gameObject;
+        playerReload = GetComponent<PlayerReload>();
+        
+        if (gunObjectParent.transform.childCount >= 1)
+        {
+            gunObject = gameObject.transform.Find("GunObject").GetChild(0).gameObject;
+            gunScript = gunObject.GetComponent<GunScript>();
+        }
     }
 
 
@@ -16,7 +30,7 @@ public class PlayerGunInteract : MonoBehaviour
 
         if (Input.GetKeyDown("e"))
         {
-            if (gameObject.transform.Find("GunObject").childCount >= 1)
+            if (gunObjectParent.transform.childCount >= 1)
             {
                 RemoveWeapon();
             }
@@ -33,34 +47,34 @@ public class PlayerGunInteract : MonoBehaviour
                 }
             }
         }
-        
     }
 
     
     void SetWeapon(GameObject gunObj)
     {
-        PlayerShoot playerShoot = gameObject.GetComponent<PlayerShoot>();
+        pickUp = true;
         
         gunObj.GetComponent<Rigidbody>().isKinematic = true;
         gunObj.transform.SetParent(gameObject.transform.Find("GunObject"));
         gunObj.transform.localPosition = Vector3.zero;
         gunObj.transform.localRotation = Quaternion.identity;
         
-        playerShoot.gunObject = gunObj;
-        playerShoot.gunScript = gunObj.GetComponent<GunScript>();
+        gunObject = gunObj;
+        gunScript = gunObj.GetComponent<GunScript>();
     }
     
     
     void RemoveWeapon()
     {
-        PlayerShoot playerShoot = gameObject.GetComponent<PlayerShoot>();
-        GameObject gunObject = playerShoot.gunObject;
         Rigidbody gunRB = gunObject.GetComponent<Rigidbody>();
 
         gunRB.isKinematic = false;
         gunObject.transform.parent = null;
                 
-        playerShoot.gunObject = null;
-        playerShoot.gunScript = null;
+        gunObject = null;
+        gunScript = null;
+
+        playerReload.magParent = null;
     }
+    
 }

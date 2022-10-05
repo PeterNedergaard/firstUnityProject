@@ -11,6 +11,7 @@ public class V2PlayerMovement : MonoBehaviour
 {
     private CharacterController cc;
     private bool groundedPlayer;
+    private bool jump;
 
     private float verticalVelocity;
     private float playerSpeed = 7;
@@ -40,10 +41,7 @@ public class V2PlayerMovement : MonoBehaviour
 
         move2 *= playerSpeed * Input.GetAxis("Horizontal");
 
-        
-        // transform.Rotate(Vector3.up,2f * Input.GetAxis("Horizontal"));
-        
-        
+
         verticalVelocity -= gravityValue * Time.deltaTime;
 
         if (groundedPlayer && verticalVelocity < 0)
@@ -51,14 +49,15 @@ public class V2PlayerMovement : MonoBehaviour
             verticalVelocity = 0;
         }
         
-        if (Input.GetButton("Jump") && groundedPlayer)
+        if (jump)
         {
             verticalVelocity += Mathf.Sqrt(jumpHeight * gravityValue);
+            jump = false;
         }
         
         move.y = verticalVelocity;
         
-        
+
         // Mouse movement
         turn.x += Input.GetAxis("Mouse X") * mouseSensitivity;
         turn.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -67,8 +66,8 @@ public class V2PlayerMovement : MonoBehaviour
         if (turn.y > 90) turn.y = 90;
 
         transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);
-        
-        
+
+
         // Apparently, you arent supposed to call cc.Move more than once. Living on the edge...
         cc.Move(move * Time.deltaTime);
         cc.Move(move2 * Time.deltaTime);
@@ -78,5 +77,10 @@ public class V2PlayerMovement : MonoBehaviour
     void Update()
     {
         groundedPlayer = Physics.Raycast(transform.position, Vector3.down, 1 + cc.skinWidth, layerMask);
+
+        if (Input.GetButton("Jump") && groundedPlayer)
+        {
+            jump = true;
+        }
     }
 }
