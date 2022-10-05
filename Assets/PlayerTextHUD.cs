@@ -8,12 +8,25 @@ using UnityEngine.UI;
 public class PlayerTextHUD : MonoBehaviour
 {
     private GameObject lookAtTextObject;
+    private Transform canvas;
     private Text lookAtText;
+    private Text AmmoInMagText;
+    private PlayerGunInteract playerGunInteract;
+    private Slider hpBarSlider;
+    private float sliderMaxValue;
 
     void Start()
     {
-        lookAtTextObject = GameObject.Find("Canvas/LookingAt").gameObject;
+        canvas = transform.Find("Canvas");
+        
+        lookAtTextObject = canvas.transform.Find("LookingAt").gameObject;
         lookAtText = lookAtTextObject.GetComponent<Text>();
+        
+        AmmoInMagText = canvas.transform.Find("AmmoPanel/AmmoInMagText").GetComponent<Text>();
+        playerGunInteract = GetComponent<PlayerGunInteract>();
+        
+        hpBarSlider = transform.Find("Canvas/HPpanel/HPbars").GetComponent<Slider>();
+        sliderMaxValue = 1;
     }
     
     
@@ -40,5 +53,17 @@ public class PlayerTextHUD : MonoBehaviour
                 lookAtText.text = text;
             }
         }
+
+        AmmoInMagText.text = playerGunInteract.gunObject ? playerGunInteract.gunScript.ammoInMag.ToString() : "";
+    }
+    
+    
+    public void UpdateHPbar()
+    {
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        
+        float sliderValue = sliderMaxValue * (playerHealth.health/playerHealth.maxHealth);
+        
+        hpBarSlider.value = sliderValue;
     }
 }

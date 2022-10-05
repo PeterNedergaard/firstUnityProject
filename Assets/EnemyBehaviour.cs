@@ -13,6 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
     private Transform player;
     private float aggroRange = 15f;
     [NonSerialized] public bool dead;
+    public float damageAmount;
     
     
     void Start()

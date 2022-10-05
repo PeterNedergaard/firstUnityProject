@@ -16,7 +16,8 @@ public class GunScript : MonoBehaviour
     private float bulletSpawnOffset;
     private float bulletTime;
     [NonSerialized] public int ammoInMag;
-    
+    private PlayerTextHUD playerTextHUD;
+
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class GunScript : MonoBehaviour
         if (Time.unscaledTime - bulletTime > 60/rpm && ammoInMag > 0)
         {
             ammoInMag -= 1;
-            
+
             bulletTime = Time.unscaledTime;
 
             bulletVector = barrelObject.transform.position + barrelObject.transform.forward * bulletSpawnOffset;

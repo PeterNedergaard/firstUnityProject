@@ -20,11 +20,12 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        enemyInfoUI.hpBarTimer = Time.unscaledTime;
         if (collision.gameObject.CompareTag("Bullet") && !enemyBehaviour.dead)
         {
+            enemyInfoUI.hpBarTimer = Time.unscaledTime;
+            
             health -= collision.gameObject.GetComponent<BulletBehavior>().bulletDamage;
-            GetComponent<EnemyInfoUI>().UpdateHPbar();
+            enemyInfoUI.UpdateHPbar();
         }
     }
 

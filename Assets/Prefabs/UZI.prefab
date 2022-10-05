@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 5258460956515785776}
   - component: {fileID: 270980163281379785}
   - component: {fileID: -6196662179369123534}
+  - component: {fileID: 1066243050183425846}
   m_Layer: 9
   m_Name: UZI
   m_TagString: Untagged
@@ -405,7 +406,7 @@ MonoBehaviour:
   magPrefab: {fileID: 3619398803780875560, guid: 1729d2cc8d09f31439a4ca3c1cf785ed, type: 3}
   rpm: 800
   reloadDelay: 0.7
-  maxAmmo: 25
+  maxAmmo: 20
 --- !u!65 &-6196662179369123534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -417,8 +418,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0835296, y: 0.47765517, z: 1.2221775}
-  m_Center: {x: -0.001353737, y: -0.07292917, z: -0.11108899}
+  m_Size: {x: 0.0835296, y: 0.33365214, z: 0.76047194}
+  m_Center: {x: -0.001353737, y: -0.00092766434, z: 0.11976397}
+--- !u!65 &1066243050183425846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5710895239186239295}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.016808406, y: 0.010225773, z: 0.75981015}
+  m_Center: {x: -0.033676825, y: -0.17571676, z: 0.1222069}
 --- !u!1 &5756908076048700604
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class PlayerReload : MonoBehaviour
     private float reloadTime;
     private float reloadDelay;
     private List<Transform> magList;
+    private bool reloading;
     void Start()
     {
         playerGunInteract = GetComponent<PlayerGunInteract>();
@@ -26,6 +27,7 @@ public class PlayerReload : MonoBehaviour
         {
             getMag();
             reloadDelay = playerGunInteract.gunScript.reloadDelay;
+            reloading = false;
             
             if (!magParent)
             {
@@ -33,8 +35,9 @@ public class PlayerReload : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown("r") && playerGunInteract.gunObject)
+        if (Input.GetKeyDown("r") && playerGunInteract.gunObject && !reloading)
         {
+            reloading = true;
             reloadTime = Time.unscaledTime;
             
             if (magParent)
@@ -46,7 +49,8 @@ public class PlayerReload : MonoBehaviour
 
         if (Time.unscaledTime - reloadTime > reloadDelay && playerGunInteract.gunObject && !magParent)
         {
-            insertMag(); 
+            insertMag();
+            reloading = false;
         }
         
     }
@@ -79,7 +83,6 @@ public class PlayerReload : MonoBehaviour
             var magToDestroy = magList[0].gameObject;
             magList.Remove(magToDestroy.transform);
             Destroy(magToDestroy);
-            print(magList.Count);
         }
     }
     
