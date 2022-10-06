@@ -30,7 +30,7 @@ public class EnemyInfoUI : MonoBehaviour
     void Update()
     {
         Vector3 worldPos = transform.position;
-        worldPos.y += transform.localScale.y + 0.5f;
+        worldPos.y += transform.localScale.y;
         
         hpBars.position  = cam.WorldToScreenPoint(worldPos);
         

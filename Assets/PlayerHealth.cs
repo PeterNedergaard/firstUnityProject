@@ -19,11 +19,11 @@ public class PlayerHealth : MonoBehaviour
     }
 
 
-    private void OnCollisionStay(Collision collisionInfo)
+    private void OnCollisionEnter(Collision collisionInfo)
     {
-        if (collisionInfo.transform.CompareTag("Enemy") && Time.unscaledTime - damageTimer > damageDelay)
+        if (collisionInfo.transform.CompareTag("EnemyArm"))
         {
-            TakeDamage(collisionInfo.transform.GetComponent<EnemyBehaviour>().damageAmount);
+            TakeDamage(collisionInfo.transform.root.GetComponent<EnemyBehaviour>().damageAmount);
             damageTimer = Time.unscaledTime;
         }
     }
