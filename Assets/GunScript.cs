@@ -20,12 +20,13 @@ public class GunScript : MonoBehaviour
     private PlayerTextHUD playerTextHUD;
     private GameObject muzzleFlash;
     private GameObject muzzleFlashObject;
-
+    
 
     private void Awake()
     {
         barrelObject = transform.Find("Barrel").gameObject;
         muzzleFlashObject = transform.Find("MuzzleFlashObject").gameObject;
+        
     }
 
     void Start()
@@ -47,7 +48,6 @@ public class GunScript : MonoBehaviour
         {
             muzzleFlash.SetActive(false);
         }
-        
     }
 
 

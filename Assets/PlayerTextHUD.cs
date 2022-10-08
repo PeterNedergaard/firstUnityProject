@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerTextHUD : MonoBehaviour
 {
+    [NonSerialized] public Camera mainCamera;
+    [NonSerialized] public float defaultFOV;
     private GameObject lookAtTextObject;
     private Transform canvas;
     private Text lookAtText;
@@ -14,47 +16,56 @@ public class PlayerTextHUD : MonoBehaviour
     private PlayerGunInteract playerGunInteract;
     private Slider hpBarSlider;
     private float sliderMaxValue;
+    private GameObject crossHair;
+
+    private void Awake()
+    {
+        mainCamera = transform.Find("Main Camera").GetComponent<Camera>();
+        canvas = transform.Find("Canvas");
+        lookAtTextObject = canvas.Find("LookingAt").gameObject;
+        lookAtText = lookAtTextObject.GetComponent<Text>();
+        AmmoInMagText = canvas.Find("AmmoPanel/AmmoInMagText").GetComponent<Text>();
+        playerGunInteract = GetComponent<PlayerGunInteract>();
+        hpBarSlider = transform.Find("Canvas/HPpanel/HPbars").GetComponent<Slider>();
+        crossHair = canvas.Find("Crosshair").gameObject;
+    }
 
     void Start()
     {
-        canvas = transform.Find("Canvas");
-        
-        lookAtTextObject = canvas.transform.Find("LookingAt").gameObject;
-        lookAtText = lookAtTextObject.GetComponent<Text>();
-        
-        AmmoInMagText = canvas.transform.Find("AmmoPanel/AmmoInMagText").GetComponent<Text>();
-        playerGunInteract = GetComponent<PlayerGunInteract>();
-        
-        hpBarSlider = transform.Find("Canvas/HPpanel/HPbars").GetComponent<Slider>();
         sliderMaxValue = 1;
+        defaultFOV = mainCamera.fieldOfView;
     }
     
     
     void Update()
     {
         RaycastHit hit;
-        string text;
-        
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+
+        if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
         {
             // To help save resources. Idk if it matters much
-            if (!hit.transform.name.Equals(lookAtText.text))
+            if (hit.transform.CompareTag("Weapon") && !hit.transform.name.Equals(lookAtText.text))
             {
-                // In theory, if it has a barrel, it's a gun
-                if (hit.transform.Find("Barrel"))
-                {
-                    text = "Press 'E' to pick up " + hit.transform.name;
-                }
-                else
-                {
-                    text = "";
-                }
-
-                lookAtText.text = text;
+                lookAtText.text = "Press 'E' to pick up " + hit.transform.name;
+                lookAtText.gameObject.SetActive(true);
+            }
+            else
+            {
+                lookAtText.gameObject.SetActive(false);
             }
         }
-
-        AmmoInMagText.text = playerGunInteract.gunObject ? playerGunInteract.gunScript.ammoInMag.ToString() : "";
+        
+        if (playerGunInteract.gunObject)
+        {
+            AmmoInMagText.text = playerGunInteract.gunScript.ammoInMag.ToString();
+            AmmoInMagText.gameObject.SetActive(true);
+            crossHair.gameObject.SetActive(false);
+        }
+        else
+        {
+            AmmoInMagText.gameObject.SetActive(false);
+            crossHair.gameObject.SetActive(true);
+        }
     }
     
     

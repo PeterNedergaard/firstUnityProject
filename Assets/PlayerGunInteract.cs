@@ -6,22 +6,27 @@ using UnityEngine;
 
 public class PlayerGunInteract : MonoBehaviour
 {
-    private GameObject gunObjectParent;
+    [NonSerialized] public GameObject gunObjectParent;
     [NonSerialized] public GameObject gunObject;
     [NonSerialized] public GunScript gunScript;
     [NonSerialized] public bool pickUp;
     private PlayerReload playerReload;
 
-    void Start()
+    private void Awake()
     {
-        gunObjectParent = transform.Find("GunObject").gameObject;
         playerReload = GetComponent<PlayerReload>();
+        gunObjectParent = transform.Find("GunObject").gameObject;
         
         if (gunObjectParent.transform.childCount >= 1)
         {
             gunObject = gameObject.transform.Find("GunObject").GetChild(0).gameObject;
             gunScript = gunObject.GetComponent<GunScript>();
         }
+    }
+
+    void Start()
+    {
+        
     }
 
 
