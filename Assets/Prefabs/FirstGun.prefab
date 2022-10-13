@@ -593,6 +593,8 @@ MonoBehaviour:
   rpm: 300
   reloadDelay: 1.5
   maxAmmo: 15
+  recoilAmount: 1.5
+  shotgun: 0
 --- !u!1 &7148782142646689402
 GameObject:
   m_ObjectHideFlags: 0

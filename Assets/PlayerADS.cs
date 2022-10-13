@@ -36,7 +36,7 @@ public class PlayerADS : MonoBehaviour
         if (playerGunInteract.gunObject)
         {
             gunObject = playerGunInteract.gunObjectParent.transform;
-            
+
             switch (ads)
             {
                 case true when gunObject.localPosition != adsPos:

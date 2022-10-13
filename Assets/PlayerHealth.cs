@@ -8,23 +8,24 @@ public class PlayerHealth : MonoBehaviour
 {
     public float maxHealth;
     [NonSerialized] public float health;
-    private float damageTimer;
-    public float damageDelay = 1;
     private PlayerTextHUD playerTextHUD;
     
+    private void Awake()
+    {
+        playerTextHUD = GetComponent<PlayerTextHUD>();
+    }
+
     void Start()
     {
         health = maxHealth;
-        playerTextHUD = GetComponent<PlayerTextHUD>();
     }
 
 
     private void OnCollisionEnter(Collision collisionInfo)
     {
-        if (collisionInfo.transform.CompareTag("EnemyArm"))
+        if (collisionInfo.collider.CompareTag("EnemyArm"))
         {
             TakeDamage(collisionInfo.transform.root.GetComponent<EnemyBehaviour>().damageAmount);
-            damageTimer = Time.unscaledTime;
         }
     }
 

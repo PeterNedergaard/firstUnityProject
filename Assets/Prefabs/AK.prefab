@@ -157,6 +157,8 @@ MonoBehaviour:
   rpm: 450
   reloadDelay: 1.5
   maxAmmo: 30
+  recoilAmount: 1
+  shotgun: 0
 --- !u!65 &1457155131470923643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -394,7 +396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3359164725023252621}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.033, z: 0.1173}
+  m_LocalPosition: {x: 0, y: 0.033, z: 0.1165}
   m_LocalScale: {x: 2.28052, y: 2.28052, z: 2.28052}
   m_ConstrainProportionsScale: 0
   m_Children: []

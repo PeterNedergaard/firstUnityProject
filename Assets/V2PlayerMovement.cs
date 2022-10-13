@@ -19,7 +19,7 @@ public class V2PlayerMovement : MonoBehaviour
     private float gravityValue = 9.81f;
     private float mouseSensitivity = 2;
     private int layerMask = 1 << 8;
-    private Vector2 turn;
+    [NonSerialized] public Vector2 turn;
 
     void Start()
     {

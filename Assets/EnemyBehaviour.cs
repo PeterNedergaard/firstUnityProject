@@ -6,35 +6,31 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    // Parts of this script is violently borrowed from teacher Jesper
     
     [SerializeField] private Animator m_animator;
     private NavMeshAgent navMeshAgent;
-    private Rigidbody rb;
     private Transform player;
     private float aggroRange = 15f;
     [NonSerialized] public bool dead;
     public float damageAmount;
-    private Collider attackArmCollider;
+    [SerializeField] private Transform attackArm;
+    private CapsuleCollider attackArmCollider;
 
 
     private void Awake()
     {
+        player = GameObject.Find("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        rb = gameObject.GetComponent<Rigidbody>();
-        m_animator = gameObject.GetComponent<Animator>();
+        m_animator = GetComponent<Animator>();
     }
 
     void Start()
     {
-        player = GameObject.Find("Player").transform;
-        
-        // Change this please
-        attackArmCollider = transform.Find("basic_rig/basic_rig Pelvis/basic_rig Spine/basic_rig Spine1/basic_rig L Clavicle/basic_rig L UpperArm/basic_rig L Forearm/basic_rig L Hand").gameObject.GetComponent<Collider>();
+        attackArmCollider = attackArm.GetComponent<CapsuleCollider>();
         attackArmCollider.enabled = false;
     }
-
     
+
     void Update()
     {
         if (!dead)
@@ -69,6 +65,15 @@ public class EnemyBehaviour : MonoBehaviour
     {
         dead = true;
         navMeshAgent.enabled = false;
-        m_animator.SetTrigger("Dead");
+        GetComponent<CapsuleCollider>().enabled = false;
+        
+        GetComponent<RagdollHandler>().GoRagdoll();
     }
+
+    
+    public void ActivateArm(string state)
+    {
+        attackArmCollider.enabled = state.Equals("on");
+    }
+    
 }

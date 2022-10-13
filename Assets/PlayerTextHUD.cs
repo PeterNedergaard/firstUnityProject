@@ -44,7 +44,7 @@ public class PlayerTextHUD : MonoBehaviour
         if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
         {
             // To help save resources. Idk if it matters much
-            if (hit.transform.CompareTag("Weapon") && !hit.transform.name.Equals(lookAtText.text))
+            if (hit.transform.CompareTag("Weapon") && !hit.transform.name.Equals(lookAtText.text) && !playerGunInteract.gunObject)
             {
                 lookAtText.text = "Press 'E' to pick up " + hit.transform.name;
                 lookAtText.gameObject.SetActive(true);
