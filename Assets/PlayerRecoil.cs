@@ -6,13 +6,15 @@ using Random = UnityEngine.Random;
 
 public class PlayerRecoil : MonoBehaviour
 {
-    private PlayerGunInteract playerGunInteract;
     private V2PlayerMovement playerMovement;
+    private PlayerGunInfo gunInfo;
+
+    private Transform bolt;
     
     private void Awake()
     {
-        playerGunInteract = GetComponent<PlayerGunInteract>();
         playerMovement = GetComponent<V2PlayerMovement>();
+        gunInfo = GetComponent<PlayerGunInfo>();
     }
 
     void Start()
@@ -21,14 +23,18 @@ public class PlayerRecoil : MonoBehaviour
 
     void Update()
     {
-        if (playerGunInteract.gunObject)
+        if (gunInfo.gunObject)
         {
-            playerGunInteract.gunObject.transform.localPosition = Vector3.MoveTowards(playerGunInteract.gunObject.transform.localPosition, Vector3.zero, 0.015f);
-
-
-            if (playerGunInteract.gunObject.name.Equals("UZI"))
+            gunInfo.gunObject.transform.localPosition = Vector3.MoveTowards(gunInfo.gunObject.transform.localPosition, Vector3.zero, 0.015f);
+            
+            
+            // Bolt movement limited to the UZI
+            if (gunInfo.gunObject.name.Equals("UZI"))
             {
-                Transform bolt = playerGunInteract.gunObject.transform.Find("Bolt");
+                if (!bolt)
+                {
+                    bolt = gunInfo.gunObject.transform.Find("Bolt");
+                }
 
                 var zeroPos = new Vector3(0, 0.021f, 0.145f);
 
@@ -38,28 +44,28 @@ public class PlayerRecoil : MonoBehaviour
                 }
             }
             
-            
         }
     }
 
 
     public void ApplyRecoil()
     {
-        float recoilAmount = playerGunInteract.gunScript.recoilAmount;
+        float recoilAmount = gunInfo.gunScript.recoilAmount;
         
         playerMovement.turn.y += Random.Range(-0.2f, recoilAmount);
         playerMovement.turn.x += Random.Range(-0.4f, 0.4f);
 
-        Vector3 gunPos = playerGunInteract.gunObject.transform.localPosition;
+        Vector3 gunPos = gunInfo.gunObject.transform.localPosition;
             
         if (gunPos.z > -recoilAmount/10)
         {
-            playerGunInteract.gunObject.transform.localPosition += new Vector3(0, 0, -recoilAmount/10);
+            gunInfo.gunObject.transform.localPosition += new Vector3(0, 0, -recoilAmount/10);
         }
 
         
         
-        var gunObj = playerGunInteract.gunObject;
+        // Bolt movement limited to the UZI
+        var gunObj = gunInfo.gunObject;
         
         if (gunObj.name.Equals("UZI"))
         {

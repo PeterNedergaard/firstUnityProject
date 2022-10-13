@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class PlayerADS : MonoBehaviour
 {
-    private PlayerGunInteract playerGunInteract;
     private Transform gunObject;
     private bool ads;
     private float adsSpeed = 3;
     private Vector3 adsPos;
     private Vector3 hipPos;
     private PlayerTextHUD playerTextHUD;
+    private PlayerGunInfo gunInfo;
     
     private void Awake()
     {
-        playerGunInteract = GetComponent<PlayerGunInteract>();
         playerTextHUD = GetComponent<PlayerTextHUD>();
+        gunInfo = GetComponent<PlayerGunInfo>();
     }
 
     void Start()
@@ -33,9 +33,9 @@ public class PlayerADS : MonoBehaviour
             ads = !ads;
         }
 
-        if (playerGunInteract.gunObject)
+        if (gunInfo.gunObject)
         {
-            gunObject = playerGunInteract.gunObjectParent.transform;
+            gunObject = gunInfo.gunObjectParent.transform;
 
             switch (ads)
             {

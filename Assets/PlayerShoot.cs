@@ -7,29 +7,25 @@ using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
-    private PlayerGunInteract playerGunInteract;
-    private PlayerReload playerReload;
     
-
+    private PlayerGunInfo gunInfo;
     private Vector3 recoilPos;
 
     private void Awake()
     {
-        playerGunInteract = GetComponent<PlayerGunInteract>();
-        playerReload = GetComponent<PlayerReload>();
+        gunInfo = GetComponent<PlayerGunInfo>();
     }
 
     void Start()
     {
-        
     }
 
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && playerReload.magParent && playerGunInteract.gunScript.ammoInMag > 0)
+        if (Input.GetMouseButton(0) && gunInfo.magParent && gunInfo.gunScript.ammoInMag > 0)
         {
-            playerGunInteract.gunScript.Shoot();
+            gunInfo.gunScript.Shoot();
         }
     }
 }

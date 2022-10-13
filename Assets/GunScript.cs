@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class GunScript : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    [SerializeField] private GameObject bulletPrefab;
     public GameObject magPrefab;
     [SerializeField] private GameObject muzzleFlashPrefab;
     public float rpm;
@@ -15,6 +15,7 @@ public class GunScript : MonoBehaviour
     [NonSerialized] public int ammoInMag;
     public float recoilAmount;
     public bool shotgun;
+    
     private GameObject barrelObject;
     private float bulletForce = 10;
     private float bulletSpawnOffset;
@@ -23,7 +24,7 @@ public class GunScript : MonoBehaviour
     private GameObject muzzleFlash;
     private GameObject muzzleFlashObject;
     private PlayerRecoil playerRecoil;
-    
+
 
     private void Awake()
     {
@@ -37,8 +38,8 @@ public class GunScript : MonoBehaviour
         bulletSpawnOffset = barrelObject.transform.localScale.z / 2;
         ammoInMag = maxAmmo;
 
-        Vector3 flashVector = muzzleFlashObject.transform.position;
-        muzzleFlash = Instantiate(muzzleFlashPrefab, flashVector, transform.rotation);
+        Vector3 flashPos = muzzleFlashObject.transform.position;
+        muzzleFlash = Instantiate(muzzleFlashPrefab, flashPos, transform.rotation);
         muzzleFlash.transform.parent = muzzleFlashObject.transform;
         muzzleFlash.SetActive(false);
     }
@@ -61,33 +62,8 @@ public class GunScript : MonoBehaviour
 
             bulletTime = Time.unscaledTime;
             
-            
             // Spawn bullet, add force 
-            Vector3 bulletSpawn = barrelObject.transform.position + barrelObject.transform.forward * bulletSpawnOffset;
-
-            if (!shotgun)
-            {
-                GameObject currBullet = Instantiate(bulletPrefab, bulletSpawn, Quaternion.identity);
-                Rigidbody currBulletRb = currBullet.GetComponent<Rigidbody>();
-                currBulletRb.AddForce(barrelObject.transform.forward * bulletForce, ForceMode.Impulse);
-            }
-            else
-            {
-                int shotCount = 10;
-                float shotAngle = 7;
-
-                for (int i = 0; i < shotCount-1; i++)
-                {
-                    float randomRotX = Random.Range(-shotAngle / 2, shotAngle / 2);
-                    float randomRotY = Random.Range(-shotAngle / 2, shotAngle / 2);
-
-                    GameObject currBullet = Instantiate(bulletPrefab, bulletSpawn, Quaternion.identity);
-                    Rigidbody currBulletRb = currBullet.GetComponent<Rigidbody>();
-                    
-                    currBulletRb.transform.rotation = barrelObject.transform.rotation * Quaternion.Euler(randomRotX, randomRotY, 1);
-                    currBulletRb.AddForce((barrelObject.transform.forward + currBulletRb.transform.forward) * bulletForce, ForceMode.Impulse);
-                }
-            }
+            FireBullets(shotgun);
             
             // Muzzle flash
             muzzleFlash.transform.localRotation = Quaternion.Euler(0,0,Random.Range(0, 360));
@@ -96,5 +72,38 @@ public class GunScript : MonoBehaviour
             // Recoil
             playerRecoil.ApplyRecoil();
         }
-    } 
+    }
+
+    
+
+    private void FireBullets(bool isShotgun)
+    {
+        Vector3 bulletSpawn = barrelObject.transform.position + barrelObject.transform.forward * bulletSpawnOffset;
+
+        if (!isShotgun)
+        {
+            GameObject currBullet = Instantiate(bulletPrefab, bulletSpawn, Quaternion.identity);
+            Rigidbody currBulletRb = currBullet.GetComponent<Rigidbody>();
+            currBulletRb.AddForce(barrelObject.transform.forward * bulletForce, ForceMode.Impulse);
+        }
+        else
+        {
+            int shotCount = 10;
+            float shotAngle = 7;
+            
+            for (int i = 0; i < shotCount-1; i++)
+            {
+                float randomRotX = Random.Range(-shotAngle / 2, shotAngle / 2);
+                float randomRotY = Random.Range(-shotAngle / 2, shotAngle / 2);
+
+                GameObject currBullet = Instantiate(bulletPrefab, bulletSpawn, Quaternion.identity);
+                Rigidbody currBulletRb = currBullet.GetComponent<Rigidbody>();
+                    
+                currBulletRb.transform.rotation = barrelObject.transform.rotation * Quaternion.Euler(randomRotX, randomRotY, 1);
+                currBulletRb.AddForce((barrelObject.transform.forward + currBulletRb.transform.forward) * bulletForce, ForceMode.Impulse);
+            }
+        }
+        
+        
+    }
 }

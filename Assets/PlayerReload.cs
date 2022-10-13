@@ -7,47 +7,50 @@ using UnityEngine;
 
 public class PlayerReload : MonoBehaviour
 {
-    private PlayerGunInteract playerGunInteract;
-    private Transform magObject;
-    [NonSerialized] public Transform magParent;
     private float reloadTime;
     private float reloadDelay;
     private List<Transform> magList;
     private bool reloading;
+    private PlayerGunInfo gunInfo;
+
+    private void Awake()
+    {
+        gunInfo = GetComponent<PlayerGunInfo>();
+    }
+
     void Start()
     {
-        playerGunInteract = GetComponent<PlayerGunInteract>();
         magList = new List<Transform>();
     }
 
 
     void Update()
     {
-        if (playerGunInteract.pickUp)
+        if (gunInfo.pickUp)
         {
-            getMag();
-            reloadDelay = playerGunInteract.gunScript.reloadDelay;
+            gunInfo.getMag();
+            reloadDelay = gunInfo.gunScript.reloadDelay;
             reloading = false;
             
-            if (!magParent)
+            if (!gunInfo.magParent)
             {
                 reloadTime = Time.unscaledTime;
             }
         }
         
-        if (Input.GetKeyDown("r") && playerGunInteract.gunObject && !reloading)
+        if (Input.GetKeyDown("r") && gunInfo.gunObject && !reloading)
         {
             reloading = true;
             reloadTime = Time.unscaledTime;
             
-            if (magParent)
+            if (gunInfo.magParent)
             {
                 removeMag();
             }
 
         }
 
-        if (Time.unscaledTime - reloadTime > reloadDelay && playerGunInteract.gunObject && !magParent)
+        if (Time.unscaledTime - reloadTime > reloadDelay && gunInfo.gunObject && !gunInfo.magParent)
         {
             insertMag();
             reloading = false;
@@ -57,25 +60,25 @@ public class PlayerReload : MonoBehaviour
 
     private void insertMag()
     {
-        Vector3 magVector = magObject.transform.position;
-        GameObject newMag = Instantiate(playerGunInteract.gunScript.magPrefab, magVector, transform.rotation);
-        newMag.transform.parent = magObject.transform;
+        Vector3 magVector = gunInfo.magObject.transform.position;
+        GameObject newMag = Instantiate(gunInfo.gunScript.magPrefab, magVector, transform.rotation);
+        newMag.transform.parent = gunInfo.magObject.transform;
         
-        magParent = newMag.transform;
-        playerGunInteract.gunScript.ammoInMag = playerGunInteract.gunScript.maxAmmo;
+        gunInfo.magParent = newMag.transform;
+        gunInfo.gunScript.ammoInMag = gunInfo.gunScript.maxAmmo;
     }
     
     private void removeMag()
     {
-        if (magParent)
+        if (gunInfo.magParent)
         {
-            magParent.parent = null;
-            Rigidbody magRb = magParent.AddComponent<Rigidbody>();
+            gunInfo.magParent.parent = null;
+            Rigidbody magRb = gunInfo.magParent.AddComponent<Rigidbody>();
             magRb.isKinematic = false;
-            magRb.AddForce(magObject.transform.up * -200);
+            magRb.AddForce(gunInfo.magObject.transform.up * -200);
 
-            magList.Add(magParent);
-            magParent = null;
+            magList.Add(gunInfo.magParent);
+            gunInfo.magParent = null;
         }
         
         if (magList.Count > 10)
@@ -84,18 +87,5 @@ public class PlayerReload : MonoBehaviour
             magList.Remove(magToDestroy.transform);
             Destroy(magToDestroy);
         }
-    }
-    
-
-    private void getMag()
-    {
-        magObject = playerGunInteract.gunObject.transform.Find("MagObject");
-
-        if (magObject.childCount > 0)
-        {
-            magParent = magObject.GetChild(0);
-        }
-
-        playerGunInteract.pickUp = false;
     }
 }
