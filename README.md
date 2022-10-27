@@ -3,7 +3,7 @@
 &nbsp;
 &nbsp;
 
-## First iteration of the game:
+## First iteration of the game (28/10/2022):
 
 This version of the game has no storyline or purpose yet. However, it features some functionalitites which will be essential when the story of the game gets developed.
 #### The features include:
@@ -16,7 +16,7 @@ This version of the game has no storyline or purpose yet. However, it features s
 
 &nbsp;
 
-## Second iteration of the game:
+## Second iteration of the game (26/10/2022):
 
 The storyline or purpose is still not present.
 #### The features include:
