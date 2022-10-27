@@ -1,8 +1,3 @@
-# firstUnityProject
-
-&nbsp;
-&nbsp;
-
 ## First iteration of the game (28/10/2022):
 
 This version of the game has no storyline or purpose yet. However, it features some functionalitites which will be essential when the story of the game gets developed.
