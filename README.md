@@ -19,6 +19,7 @@ The storyline or purpose is still not present.
 - Reload
 - Muzzle flash
 - Bullet trail
+- New weapon. Shotgun
 - The requirements for adding a new weapon have increased. Objects named 'MagObject' and 'MuzzleFlashObject' are required on weapons
 - A prefab for the magazine and muzzle flash are required on the 'GunScript' of a weapon
 - Enemy now has model and animations
