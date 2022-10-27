@@ -28,7 +28,7 @@ public class PlayerADS : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && gunInfo.gunObject)
         {
             ads = !ads;
         }

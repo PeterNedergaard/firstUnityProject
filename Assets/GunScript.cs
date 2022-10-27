@@ -31,10 +31,7 @@ public class GunScript : MonoBehaviour
         barrelObject = transform.Find("Barrel").gameObject;
         muzzleFlashObject = transform.Find("MuzzleFlashObject").gameObject;
         playerRecoil = GameObject.Find("Player").GetComponent<PlayerRecoil>();
-    }
-
-    void Start()
-    {
+        
         bulletSpawnOffset = barrelObject.transform.localScale.z / 2;
         ammoInMag = maxAmmo;
 
@@ -89,7 +86,7 @@ public class GunScript : MonoBehaviour
         else
         {
             int shotCount = 10;
-            float shotAngle = 7;
+            float shotAngle = 13;
             
             for (int i = 0; i < shotCount-1; i++)
             {

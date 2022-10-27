@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyArm
   - Weapon
+  - BuildHammer
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - Mag
   - MuzzleFlash
   - EnemyRagdoll
-  - 
-  - 
+  - Checkpoint
+  - Barrier
   - 
   - 
   - 

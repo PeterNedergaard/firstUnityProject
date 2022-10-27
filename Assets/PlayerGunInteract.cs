@@ -44,7 +44,9 @@ public class PlayerGunInteract : MonoBehaviour
 
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
                 {
-                    if (hit.transform.Find("Barrel"))
+                    string hitTag = hit.transform.tag;
+
+                    if (hitTag.Equals("Weapon") || hitTag.Equals("BuildHammer"))
                     {
                         SetWeapon(hit.transform.gameObject);
                     }
@@ -57,30 +59,48 @@ public class PlayerGunInteract : MonoBehaviour
     
     void SetWeapon(GameObject gunObj)
     {
-        gunInfo.pickUp = true;
-        
         gunObj.GetComponent<Rigidbody>().isKinematic = true;
-        gunObj.transform.SetParent(gameObject.transform.Find("GunObject"));
+        gunObj.transform.SetParent(transform.Find("GunObject"));
         gunObj.transform.localPosition = Vector3.zero;
         gunObj.transform.localRotation = Quaternion.identity;
-
-        gunInfo.gunObject = gunObj;
-        gunInfo.gunScript = gunObj.GetComponent<GunScript>();
+        
+        if (gunObj.CompareTag("BuildHammer"))
+        {
+            gunInfo.hammerObject = gunObj;
+        }
+        else
+        {
+            gunInfo.pickUp = true;
+            gunInfo.gunObject = gunObj;
+            gunInfo.gunScript = gunObj.GetComponent<GunScript>();
+        }
+        
+        
+        
     }
     
     
     void RemoveWeapon()
     {
-        Rigidbody gunRB = gunInfo.gunObject.GetComponent<Rigidbody>();
+        if (gunInfo.hammerObject)
+        {
+            Rigidbody hammerRB = gunInfo.hammerObject.GetComponent<Rigidbody>();
+            hammerRB.isKinematic = false;
 
-        gunRB.isKinematic = false;
-
-        gunInfo.gunObject.transform.parent = null;
-
-        gunInfo.gunObject = null;
-        gunInfo.gunScript = null;
+            gunInfo.hammerObject.transform.parent = null;
+            gunInfo.hammerObject = null;
+        }
+        else
+        {
+            Rigidbody gunRB = gunInfo.gunObject.GetComponent<Rigidbody>();
+            
+            gunInfo.gunScript = null;
+            gunInfo.magParent = null;
+            gunRB.isKinematic = false;
+            gunInfo.gunObject.transform.parent = null;
+            gunInfo.gunObject = null;
+        }
         
-        gunInfo.magParent = null;
     }
     
 }

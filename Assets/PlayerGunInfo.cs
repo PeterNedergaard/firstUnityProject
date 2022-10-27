@@ -8,6 +8,7 @@ public class PlayerGunInfo : MonoBehaviour
     [NonSerialized] public GameObject gunObjectParent;
     [NonSerialized] public GameObject gunObject;
     [NonSerialized] public GunScript gunScript;
+    [NonSerialized] public GameObject hammerObject;
     
     [NonSerialized] public Transform magObject;
     [NonSerialized] public Transform magParent;

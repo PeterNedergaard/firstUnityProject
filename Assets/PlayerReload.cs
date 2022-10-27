@@ -16,13 +16,9 @@ public class PlayerReload : MonoBehaviour
     private void Awake()
     {
         gunInfo = GetComponent<PlayerGunInfo>();
-    }
-
-    void Start()
-    {
         magList = new List<Transform>();
     }
-
+    
 
     void Update()
     {
@@ -43,11 +39,7 @@ public class PlayerReload : MonoBehaviour
             reloading = true;
             reloadTime = Time.unscaledTime;
             
-            if (gunInfo.magParent)
-            {
-                removeMag();
-            }
-
+            removeMag();
         }
 
         if (Time.unscaledTime - reloadTime > reloadDelay && gunInfo.gunObject && !gunInfo.magParent)

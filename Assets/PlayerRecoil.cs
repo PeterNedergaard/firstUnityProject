@@ -25,7 +25,8 @@ public class PlayerRecoil : MonoBehaviour
     {
         if (gunInfo.gunObject)
         {
-            gunInfo.gunObject.transform.localPosition = Vector3.MoveTowards(gunInfo.gunObject.transform.localPosition, Vector3.zero, 0.015f);
+            // Move gun back to original position
+            gunInfo.gunObject.transform.localPosition = Vector3.MoveTowards(gunInfo.gunObject.transform.localPosition, Vector3.zero, 0.01f);
             
             
             // Bolt movement limited to the UZI
@@ -52,14 +53,14 @@ public class PlayerRecoil : MonoBehaviour
     {
         float recoilAmount = gunInfo.gunScript.recoilAmount;
         
-        playerMovement.turn.y += Random.Range(-0.2f, recoilAmount);
-        playerMovement.turn.x += Random.Range(-0.4f, 0.4f);
+        playerMovement.turn.x += Random.Range(-0.2f, recoilAmount);
+        playerMovement.turn.y += Random.Range(-0.4f, 0.4f);
 
         Vector3 gunPos = gunInfo.gunObject.transform.localPosition;
             
         if (gunPos.z > -recoilAmount/10)
         {
-            gunInfo.gunObject.transform.localPosition += new Vector3(0, 0, -recoilAmount/10);
+            gunInfo.gunObject.transform.localPosition = new Vector3(0, 0, -recoilAmount/10);
         }
 
         

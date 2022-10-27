@@ -41,11 +41,11 @@ public class PlayerTextHUD : MonoBehaviour
     void Update()
     {
         RaycastHit hit;
-
+        
         if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
         {
             // To help save resources. Idk if it matters much
-            if (hit.transform.CompareTag("Weapon") && !hit.transform.name.Equals(lookAtText.text) && !gunInfo.gunObject)
+            if (hit.transform.CompareTag("Weapon") || hit.transform.CompareTag("BuildHammer") && !hit.transform.name.Equals(lookAtText.text) && !gunInfo.gunObject)
             {
                 lookAtText.text = "Press 'E' to pick up " + hit.transform.name;
                 lookAtText.gameObject.SetActive(true);

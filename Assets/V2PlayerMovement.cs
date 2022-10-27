@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 using MouseButton = Unity.VisualScripting.MouseButton;
+using Object = UnityEngine.Object;
 
 public class V2PlayerMovement : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class V2PlayerMovement : MonoBehaviour
     private int layerMask = 1 << 8;
     [NonSerialized] public Vector2 turn;
 
-    void Start()
+    private void Awake()
     {
         cc = GetComponent<CharacterController>();
         layerMask = ~layerMask;
@@ -32,23 +33,24 @@ public class V2PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         // Front and backwards
-        Vector3 move = transform.TransformDirection(Vector3.forward);
-
-        move *= playerSpeed * Input.GetAxis("Vertical");
+        Vector3 moveZ = transform.TransformDirection(Vector3.forward);
+        moveZ *= playerSpeed * Input.GetAxis("Vertical");
 
         // Right and left
-        Vector3 move2 = transform.TransformDirection(Vector3.right);
+        Vector3 moveX = transform.TransformDirection(Vector3.right);
+        moveX *= playerSpeed * Input.GetAxis("Horizontal");
 
-        move2 *= playerSpeed * Input.GetAxis("Horizontal");
+        Vector3 move = moveZ + moveX;
 
 
+        // Jump
         verticalVelocity -= gravityValue * Time.deltaTime;
 
         if (groundedPlayer && verticalVelocity < 0)
         {
             verticalVelocity = 0;
         }
-        
+
         if (jump)
         {
             verticalVelocity += Mathf.Sqrt(jumpHeight * gravityValue);
@@ -59,28 +61,29 @@ public class V2PlayerMovement : MonoBehaviour
         
 
         // Mouse movement
-        turn.x += Input.GetAxis("Mouse X") * mouseSensitivity;
-        turn.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
+        turn.x += Input.GetAxis("Mouse Y") * mouseSensitivity;
+        turn.y += Input.GetAxis("Mouse X") * mouseSensitivity;
+        
+        if (turn.x < -90) turn.x = -90;
+        if (turn.x > 90) turn.x = 90;
+        
+        transform.rotation = Quaternion.Euler(-turn.x, turn.y, 0);
+        // transform.rotation = Quaternion.Euler(0, turn.y, 0);
 
-        if (turn.y < -90) turn.y = -90;
-        if (turn.y > 90) turn.y = 90;
 
-        transform.rotation = Quaternion.Euler(-turn.y, turn.x, 0);
-
-
-        // Apparently, you arent supposed to call cc.Move more than once. Living on the edge...
         cc.Move(move * Time.deltaTime);
-        cc.Move(move2 * Time.deltaTime);
     }
-
+    
     
     void Update()
     {
         groundedPlayer = Physics.Raycast(transform.position, Vector3.down, 1 + cc.skinWidth, layerMask);
+        // groundedPlayer = Physics.Raycast(transform.position, Vector3.down, cc.skinWidth, layerMask);
 
         if (Input.GetButton("Jump") && groundedPlayer)
         {
             jump = true;
         }
     }
+    
 }
