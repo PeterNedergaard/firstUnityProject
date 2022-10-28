@@ -23,11 +23,6 @@ public class PlayerGunInteract : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {
@@ -42,7 +37,7 @@ public class PlayerGunInteract : MonoBehaviour
             {
                 RaycastHit hit;
 
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit) && hit.distance < gunInfo.pickUpDist)
                 {
                     string hitTag = hit.transform.tag;
 
@@ -60,6 +55,7 @@ public class PlayerGunInteract : MonoBehaviour
     void SetWeapon(GameObject gunObj)
     {
         gunObj.GetComponent<Rigidbody>().isKinematic = true;
+
         gunObj.transform.SetParent(transform.Find("GunObject"));
         gunObj.transform.localPosition = Vector3.zero;
         gunObj.transform.localRotation = Quaternion.identity;
@@ -74,9 +70,6 @@ public class PlayerGunInteract : MonoBehaviour
             gunInfo.gunObject = gunObj;
             gunInfo.gunScript = gunObj.GetComponent<GunScript>();
         }
-        
-        
-        
     }
     
     
@@ -100,7 +93,6 @@ public class PlayerGunInteract : MonoBehaviour
             gunInfo.gunObject.transform.parent = null;
             gunInfo.gunObject = null;
         }
-        
     }
     
 }

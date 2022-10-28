@@ -23,8 +23,7 @@ public class EnemyHealth : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet") && !enemyBehaviour.dead)
         {
             enemyInfoUI.hpBarTimer = Time.unscaledTime;
-            
-            health -= collision.gameObject.GetComponent<BulletBehavior>().bulletDamage;
+            TakeDamage(collision.gameObject.GetComponent<BulletBehavior>().bulletDamage);
             enemyInfoUI.UpdateHPbar();
         }
     }
@@ -37,6 +36,12 @@ public class EnemyHealth : MonoBehaviour
             GetComponent<EnemyBehaviour>().Die();
             transform.Find("Canvas/HPbars").gameObject.SetActive(false);
         }
+    }
+    
+    
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
     }
     
 }

@@ -14,6 +14,7 @@ public class PlayerGunInfo : MonoBehaviour
     [NonSerialized] public Transform magParent;
     
     [NonSerialized] public bool pickUp;
+    [NonSerialized] public float pickUpDist = 3;
     
 
     public void getMag()

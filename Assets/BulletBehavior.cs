@@ -7,18 +7,11 @@ using UnityEngine;
 public class BulletBehavior : MonoBehaviour
 {
     public float bulletDamage;
-    void Start()
-    {
-        
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
     }
 
-    void Update()
-    {
-        
-    }
+    
 }

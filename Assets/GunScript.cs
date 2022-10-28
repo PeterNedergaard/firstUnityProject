@@ -41,7 +41,6 @@ public class GunScript : MonoBehaviour
         muzzleFlash.SetActive(false);
     }
 
-
     void Update()
     {
         if (Time.unscaledTime - bulletTime > 0.02 && muzzleFlash.activeInHierarchy)

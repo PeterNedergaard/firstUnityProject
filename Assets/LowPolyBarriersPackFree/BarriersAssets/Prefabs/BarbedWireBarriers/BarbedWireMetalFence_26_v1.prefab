@@ -12,6 +12,13 @@ GameObject:
   - component: {fileID: 1273172223322230436}
   - component: {fileID: 3913557904322787950}
   - component: {fileID: 2417964110721789631}
+  - component: {fileID: 3551512543028794314}
+  - component: {fileID: -3048350797733697116}
+  - component: {fileID: 2588438079192745426}
+  - component: {fileID: 2633147243783880509}
+  - component: {fileID: 3257180852954453291}
+  - component: {fileID: 1787991234952728418}
+  - component: {fileID: 3451400865917584801}
   m_Layer: 16
   m_Name: BarbedWireMetalFence_26_v1
   m_TagString: Untagged
@@ -28,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 3264894628783676347}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,8 +100,103 @@ MeshCollider:
   m_GameObject: {fileID: 3264894628783676347}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4992920846938953251, guid: 37cd9370d8110e74b9ccfd97123169d9, type: 3}
+--- !u!208 &3551512543028794314
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264894628783676347}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.632, y: 0.716, z: 0.05}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.64900005, z: 0}
+  m_TimeToStationary: 0.1
+--- !u!114 &-3048350797733697116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264894628783676347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6a6e1d598487fe46a2f190168e7fe67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  maxHealth: 50
+--- !u!65 &2588438079192745426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264894628783676347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09043908, y: 1.4327724, z: 0.0861122}
+  m_Center: {x: 0.5947145, y: 0.6486782, z: -0.020373968}
+--- !u!65 &2633147243783880509
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264894628783676347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08577216, y: 1.4327724, z: 0.07111813}
+  m_Center: {x: -0.5819871, y: 0.6486782, z: -0.015860692}
+--- !u!65 &3257180852954453291
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264894628783676347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2648072, y: 0.06914288, z: 0.11141919}
+  m_Center: {x: 0.007530451, y: 0.16219187, z: -0.032271538}
+--- !u!65 &1787991234952728418
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264894628783676347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2648072, y: 0.066533685, z: 0.08922622}
+  m_Center: {x: 0.007530451, y: 0.59957594, z: -0.02650119}
+--- !u!65 &3451400865917584801
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264894628783676347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2648072, y: 0.07774377, z: 0.08133294}
+  m_Center: {x: 0.007530451, y: 1.0356679, z: -0.006741859}
