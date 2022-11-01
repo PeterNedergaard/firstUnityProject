@@ -7,23 +7,18 @@ using UnityEngine.UI;
 public class EnemyInfoUI : MonoBehaviour
 {
     private Camera cam;
-
     private Slider hpBarSlider;
-    private float sliderMaxValue;
-    private RectTransform hpBars;
+    [NonSerialized] public RectTransform hpBars;
     [NonSerialized] public float hpBarTimer;
-    [NonSerialized] public float hpBarFadeTime = 1;
-    private EnemyBehaviour enemyBehaviour;
+    [NonSerialized] public float hpBarFadeTime = 1.5f;
 
 
-    void Start()
+    void Awake()
     {
         cam = Camera.main;
-        enemyBehaviour = GetComponent<EnemyBehaviour>();
-
         hpBars = transform.Find("Canvas/HPbars").GetComponent<RectTransform>();
         hpBarSlider = transform.Find("Canvas/HPbars").GetComponent<Slider>();
-        sliderMaxValue = 1;
+        hpBars.gameObject.SetActive(false);
     }
     
     
@@ -39,27 +34,25 @@ public class EnemyInfoUI : MonoBehaviour
             hpBars.position *= -1;
         }
 
-        if (Time.unscaledTime > hpBarTimer + hpBarFadeTime)
+        if (Time.time > hpBarTimer + hpBarFadeTime)
         {
             hpBars.gameObject.SetActive(false);
         }
-        else if (!enemyBehaviour.dead)
-        {
-            hpBars.gameObject.SetActive(true);
-        }
-        
+
     }
 
 
     public void UpdateHPbar()
     {
         EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
+        hpBarTimer = Time.time;
 
         float currHp = enemyHealth.health;
         float maxHp = enemyHealth.maxHealth;
         
-        float sliderValue = sliderMaxValue * (currHp/maxHp);
-        
+        float sliderValue = hpBarSlider.maxValue * (currHp/maxHp);
         hpBarSlider.value = sliderValue;
+        
+        hpBars.gameObject.SetActive(true);
     }
 }

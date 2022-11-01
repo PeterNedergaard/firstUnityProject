@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2782315285047850117}
   - component: {fileID: -8913106152677673643}
   - component: {fileID: 4519105830167486499}
-  m_Layer: 16
+  - component: {fileID: 5434108669580631903}
+  m_Layer: 0
   m_Name: SandBagWall_04_v2
-  m_TagString: Untagged
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +98,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3942774935579010589, guid: acaa2cb72d6476343a1047da3cddfddd, type: 3}
 --- !u!114 &-8913106152677673643
@@ -130,3 +131,16 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.096, y: 0.26500002, z: 0.0050000004}
   m_TimeToStationary: 0.1
+--- !u!65 &5434108669580631903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3052786145037884313}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3859158, y: 0.8633056, z: 0.65529}
+  m_Center: {x: 0.095675945, y: 0.3990548, z: 0.0054409206}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4222815408608841435}
   - component: {fileID: 2125280610355116561}
   - component: {fileID: 774362768349932356}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: WoodenBarrier_09_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

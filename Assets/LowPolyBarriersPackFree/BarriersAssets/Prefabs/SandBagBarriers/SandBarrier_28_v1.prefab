@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6733760882363959028}
   - component: {fileID: 8833784906156438078}
   - component: {fileID: 7878622243384279584}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: SandBarrier_28_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +95,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 893437227785219881, guid: 37737cbe47b83c4408bdd9976afc03bb, type: 3}

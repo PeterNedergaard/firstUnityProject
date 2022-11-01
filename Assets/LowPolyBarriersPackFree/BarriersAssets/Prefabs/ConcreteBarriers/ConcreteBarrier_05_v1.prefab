@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7262790853368832558}
   - component: {fileID: 7262790853368832559}
   - component: {fileID: 7262790853368832552}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: ConcreteBarrier_05_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

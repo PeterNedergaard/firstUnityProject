@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2006477809545033846}
   - component: {fileID: 4340493288813513916}
   - component: {fileID: 3169709538269680814}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: BarbedWireFence_36_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 259190657974691990}
   - component: {fileID: 259190657974691989}
   - component: {fileID: 259190657974691988}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: MetalFence_23_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

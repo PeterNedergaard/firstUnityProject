@@ -19,9 +19,9 @@ GameObject:
   - component: {fileID: 3257180852954453291}
   - component: {fileID: 1787991234952728418}
   - component: {fileID: 3451400865917584801}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: BarbedWireMetalFence_26_v1
-  m_TagString: Untagged
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4992920846938953251, guid: 37cd9370d8110e74b9ccfd97123169d9, type: 3}
 --- !u!208 &3551512543028794314
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  maxHealth: 50
+  maxHealth: 75
 --- !u!65 &2588438079192745426
 BoxCollider:
   m_ObjectHideFlags: 0

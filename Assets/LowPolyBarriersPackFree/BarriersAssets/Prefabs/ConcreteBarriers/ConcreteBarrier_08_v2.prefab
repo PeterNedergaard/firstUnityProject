@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6964103292492116290}
   - component: {fileID: 3350552725609116240}
   - component: {fileID: 4471961153906764928}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: ConcreteBarrier_08_v2
-  m_TagString: Untagged
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2281399849455638155, guid: cf7fa84b14c72e240896775ab71035e4, type: 3}
 --- !u!114 &3350552725609116240

@@ -71,11 +71,13 @@ public class EnemyBehaviour : MonoBehaviour
                 navMeshAgent.isStopped = true;
                 m_animator.SetFloat("MoveSpeed", 0);
             }
-
+            
+            
+            // Attack if a barrier is in front of enemy
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit,2))
             {
-                if (hit.transform.gameObject.layer.Equals(16))
+                if (hit.transform.CompareTag("Barrier"))
                 {
                     m_animator.SetTrigger("Attack");
                 }

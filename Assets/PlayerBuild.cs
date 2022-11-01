@@ -12,6 +12,7 @@ public class PlayerBuild : MonoBehaviour
 {
 
     [SerializeField] private List<Object> barriers;
+    [SerializeField] private GameObject barrierObject;
     private PlayerGunInfo _playerGunInfo;
     private int barrierIndex;
     private GameObject ghostBarrier;
@@ -25,7 +26,7 @@ public class PlayerBuild : MonoBehaviour
     {
         _playerGunInfo = GetComponent<PlayerGunInfo>();
         mainCamera = Camera.main;
-        _layerMask = ~LayerMask.GetMask("Barrier");
+        _layerMask = ~LayerMask.GetMask("Barrier", "Enemy");
     }
     
 
@@ -36,7 +37,7 @@ public class PlayerBuild : MonoBehaviour
             // Find position for barrier
             Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, 100, _layerMask);
             Vector3 newPos = hit.point;
-            
+
             // Either create or reposition the transparent barrier
             if (!ghostBarrier)
             {
@@ -58,9 +59,21 @@ public class PlayerBuild : MonoBehaviour
             // Place barrier
             if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(barriers[barrierIndex], hit.point, ghostBarrier.transform.rotation);
+                GameObject barrierObj = Instantiate(barrierObject, hit.point, Quaternion.identity).GameObject();
+                GameObject barrierModel = Instantiate(barriers[barrierIndex], hit.point, ghostBarrier.transform.rotation).GameObject();
+
+                BarrierHpBar barrierHpBar = barrierObj.GetComponent<BarrierHpBar>();
+                BarrierScript barrierScript = barrierModel.GetComponent<BarrierScript>();
+
+                barrierHpBar._barrierScript = barrierScript;
+                barrierScript._barrierHpBar = barrierHpBar;
+                
+                barrierModel.GetComponent<MeshCollider>().convex = true;
+                barrierModel.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                barrierModel.transform.SetParent(barrierObj.transform);
             }
             
+            // Change barrier
             if (Input.GetMouseButtonDown(1))
             {
                 barrierIndex += 1;
@@ -94,7 +107,11 @@ public class PlayerBuild : MonoBehaviour
         
         ghostBarrier = Instantiate(barriers[barrierIndex], hit.point, Quaternion.identity).GameObject();
         ghostBarrier.GetComponent<NavMeshObstacle>().enabled = false;
+        Destroy(ghostBarrier.GetComponent<BarrierScript>());
         
+        ghostBarrier.layer = 16;
+        ghostBarrier.tag = "Untagged";
+
         ghostBarrier.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         MakeObjTransparent(ghostBarrier);
     }
@@ -102,7 +119,7 @@ public class PlayerBuild : MonoBehaviour
 
     void MakeObjTransparent(GameObject obj)
     {
-        // Apparently, all of this is needed to make an 'Opaque' object 'Transparent'
+        // Apparently, all of this is needed to change an 'Opaque' object to 'Transparent'
 
         Material mat = obj.GetComponent<MeshRenderer>().material;
                 

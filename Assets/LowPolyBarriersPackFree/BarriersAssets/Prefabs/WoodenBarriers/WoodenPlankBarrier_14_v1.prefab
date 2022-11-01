@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7199201033172973478}
   - component: {fileID: -5775853710531109471}
   - component: {fileID: 3514597665085566161}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: WoodenPlankBarrier_14_v1
-  m_TagString: Untagged
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

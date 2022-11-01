@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6699006679444054636}
   - component: {fileID: 1426910044792658458}
   - component: {fileID: 7112447270136163664}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: WoodenBarbedWireBarrier_33_v1
-  m_TagString: Untagged
+  m_TagString: Barrier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2903291391148871114, guid: 4c6c192b35c498f4c8ce6240df182c1d, type: 3}
 --- !u!208 &1426910044792658458

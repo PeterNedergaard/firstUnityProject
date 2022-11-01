@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4806931415079242372}
   - component: {fileID: 4806931415079242373}
   - component: {fileID: 379630205382495399}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: ConcreteBarrier_29_v3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +95,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 997061401890140659, guid: d676aab782303b64493f412658c04e72, type: 3}
