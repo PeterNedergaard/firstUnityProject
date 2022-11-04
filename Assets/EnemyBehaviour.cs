@@ -13,7 +13,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float damageAmount;
     private float maxMoveSpeed;
     private NavMeshAgent navMeshAgent;
-    private Transform player;
+    private Transform target;
     private float aggroRange = 15f;
     private CapsuleCollider attackArmCollider;
     private float timeSinceUpdate;
@@ -22,7 +22,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        // player = GameObject.Find("Player").transform;
+        target = GameObject.Find("FlyingBurger").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
         m_animator = GetComponent<Animator>();
         maxMoveSpeed = navMeshAgent.speed;
@@ -39,14 +40,14 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (!dead)
         {
-            if (Vector3.Distance(transform.position, player.position) < aggroRange)
+            if (Vector3.Distance(transform.position, target.position) < aggroRange)
             {
                 navMeshAgent.isStopped = false;
 
                 // Update path
                 if (Time.time - timeSinceUpdate > pathUpdateInterval)
                 {
-                    navMeshAgent.SetDestination(player.position);
+                    navMeshAgent.SetDestination(target.position);
                     timeSinceUpdate = Time.time;
                 }
                 
@@ -54,7 +55,7 @@ public class EnemyBehaviour : MonoBehaviour
                 m_animator.SetFloat("MoveSpeed", navMeshAgent.speed * 3);
                 
                 // Start or stop attacking
-                if (Vector3.Distance(transform.position, player.position) < 2)
+                if (Vector3.Distance(transform.position, target.position) < 1.5f)
                 {
                     m_animator.SetTrigger("Attack");
                     navMeshAgent.speed = 0;
