@@ -41,20 +41,17 @@ public class GameHandler : MonoBehaviour
 
     public void AnnounceNextRound()
     {
-        //TODO: Change round-number and info text
         roundTitle.text = "ROUND " + roundNumber;
         AmountInfo.text = enemyAmount.ToString();
         SpeedInfo.text = enemySpeed + "x";
         DamageInfo.text = enemyDamage + "x";
         
-        //TODO: Activate canvas
         canvas.gameObject.SetActive(true);
         roundInfoTimer = Time.time;
         canvasGroup.alpha = 1;
 
         StartCoroutine(FadeOutRoundInfo());
-
-        //TODO: Increment roundNumber
+        
         roundNumber += 1;
     }
     
