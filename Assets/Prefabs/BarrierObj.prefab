@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8193153897649826217}
-  - component: {fileID: -3546159070194298101}
+  - component: {fileID: -2944152547131865021}
   m_Layer: 16
   m_Name: BarrierObj
   m_TagString: Barrier
@@ -123,7 +123,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3546159070194298101
+--- !u!114 &-2944152547131865021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,9 +132,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1332364461850748051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22ab53c230703145ad9f44e27b54954, type: 3}
+  m_Script: {fileID: 11500000, guid: e969a6c6ce90d6a4d8d3e6ec43b51208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
+  canvas: {fileID: 7860535559623636964}
 --- !u!1 &3028319914135663152
 GameObject:
   m_ObjectHideFlags: 0

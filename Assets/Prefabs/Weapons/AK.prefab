@@ -152,8 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8670996966028621675, guid: 7d45d6ace20b9064fa30c8e407526284, type: 3}
-  magPrefab: {fileID: 6218179939140846533, guid: c3d8ade3edda8bb42a18263f709d985c, type: 3}
   muzzleFlashPrefab: {fileID: 3927220432242913770, guid: e7f58dad2626d864f975905eb74deec5, type: 3}
+  player: {fileID: 3076456396407376821, guid: 09b27192da8f6d2448f12b0e89f9e92d, type: 3}
+  magPrefab: {fileID: 6218179939140846533, guid: c3d8ade3edda8bb42a18263f709d985c, type: 3}
   rpm: 450
   reloadDelay: 1.5
   maxAmmo: 30

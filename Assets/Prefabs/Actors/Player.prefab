@@ -331,7 +331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2061452177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 6447810466565387267}
   - component: {fileID: 8502080626303786032}
   - component: {fileID: 2207166266313837885}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,6 +777,7 @@ GameObject:
   - component: {fileID: 5395043868536188378}
   - component: {fileID: 7082349178711161723}
   - component: {fileID: 722027481004704634}
+  - component: {fileID: 7603406708584025979}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -898,7 +899,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3076456396407376821}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a7c0ffba55ef4249a41780880427621, type: 3}
   m_Name: 
@@ -1000,6 +1001,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6648e8287cecdff4f8c55d4110728010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7603406708584025979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076456396407376821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f171b19599f2b7a458c270174d923caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barriers:
+  - {fileID: 8010174082899857812, guid: 3318a0dcc90627d4394e56a36f632ee6, type: 3}
+  - {fileID: 3052786145037884313, guid: 54d8b5f898d226149905f2836c474e9b, type: 3}
+  - {fileID: 1806370008483339937, guid: afc561f13a5ea0346867dabaab718d45, type: 3}
+  - {fileID: 6964103292492116413, guid: ce48558ac6f7fbb498a1a5a73755bc9b, type: 3}
+  - {fileID: 5780034516089840320, guid: b4b7339fb3082864b8444ec917d80cf4, type: 3}
+  - {fileID: 3264894628783676347, guid: 4b3b356a77ccfe640a982b42b04ecd98, type: 3}
+  barrierObject: {fileID: 0}
 --- !u!1 &3646295470996271295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1055,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1327,7 +1348,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 5687
+    m_Bits: 235319
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

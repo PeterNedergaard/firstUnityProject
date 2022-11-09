@@ -7,12 +7,12 @@ using Random = UnityEngine.Random;
 public class GunScript : MonoBehaviour
 {
     [SerializeField] private GameObject bulletPrefab;
-    public GameObject magPrefab;
     [SerializeField] private GameObject muzzleFlashPrefab;
+    [NonSerialized] public int ammoInMag;
+    public GameObject magPrefab;
     public float rpm;
     public float reloadDelay;
     public int maxAmmo;
-    [NonSerialized] public int ammoInMag;
     public float recoilAmount;
     public bool shotgun;
     
@@ -31,7 +31,7 @@ public class GunScript : MonoBehaviour
         barrelObject = transform.Find("Barrel").gameObject;
         muzzleFlashObject = transform.Find("MuzzleFlashObject").gameObject;
         playerRecoil = GameObject.Find("Player").GetComponent<PlayerRecoil>();
-        
+
         bulletSpawnOffset = barrelObject.transform.localScale.z / 2;
         ammoInMag = maxAmmo;
 
@@ -43,7 +43,7 @@ public class GunScript : MonoBehaviour
 
     void Update()
     {
-        if (Time.unscaledTime - bulletTime > 0.02 && muzzleFlash.activeInHierarchy)
+        if (Time.time - bulletTime > 0.02 && muzzleFlash.activeInHierarchy)
         {
             muzzleFlash.SetActive(false);
         }
@@ -52,11 +52,11 @@ public class GunScript : MonoBehaviour
 
     public void Shoot()
     {
-        if (Time.unscaledTime - bulletTime > 60/rpm && ammoInMag > 0 || bulletTime == 0)
+        if (Time.time - bulletTime > 60/rpm && ammoInMag > 0 || bulletTime == 0)
         {
             ammoInMag -= 1;
 
-            bulletTime = Time.unscaledTime;
+            bulletTime = Time.time;
             
             // Spawn bullet, add force 
             FireBullets(shotgun);

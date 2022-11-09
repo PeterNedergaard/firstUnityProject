@@ -509,9 +509,8 @@ GameObject:
   - component: {fileID: 136043099458248162}
   - component: {fileID: 8846210248041351744}
   - component: {fileID: -4115557174280044339}
-  - component: {fileID: -1398668125519969686}
-  - component: {fileID: 8898415408030664151}
   - component: {fileID: 8992424491923754823}
+  - component: {fileID: 5191031560353494759}
   m_Layer: 17
   m_Name: Enemy
   m_TagString: Enemy
@@ -594,7 +593,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1190601789873990}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.2
   m_Speed: 2
@@ -623,32 +622,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_animator: {fileID: 95446636183784616}
   attackArm: {fileID: 4451639191276614}
+  healthHandler: {fileID: 5191031560353494759}
   damageAmount: 10
---- !u!114 &-1398668125519969686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1190601789873990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 819e5dbbe14598749a3763fc8f9de435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
---- !u!114 &8898415408030664151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1190601789873990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7c219f14100ef34297dc01a489ecaa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8992424491923754823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,6 +636,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b00db246b21b7d4fb59b857b3225ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5191031560353494759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190601789873990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e969a6c6ce90d6a4d8d3e6ec43b51208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  canvas: {fileID: 4199555250820899207}
 --- !u!1 &1236329582464368
 GameObject:
   m_ObjectHideFlags: 0

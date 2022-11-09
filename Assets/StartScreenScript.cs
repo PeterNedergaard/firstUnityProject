@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class StartScreenScript : MonoBehaviour
 {
-    public GameObject buttonCard;
-    public Transform startCam;
-    public GameObject player;
-    public GameObject gameHandler;
+    [SerializeField] private GameObject buttonCard;
+    [SerializeField] private Transform startCam;
+    [SerializeField] private GameObject gameHandler;
+    private GameObject player;
     private Transform mainCam;
     private GameObject canvas;
     private bool translateCam;
@@ -22,7 +22,6 @@ public class StartScreenScript : MonoBehaviour
 
     private TextMeshProUGUI title;
     private float colorChange;
-
     private float colorMin = 0.4f;
     private float colorMax = 0.8f;
     private float t;
@@ -33,8 +32,9 @@ public class StartScreenScript : MonoBehaviour
         Button startBtn = buttonCard.transform.Find("StartButton").GetComponent<Button>();
         Button quitBtn = buttonCard.transform.Find("QuitButton").GetComponent<Button>();
         
+        player = GameObject.Find("Player");
         canvas = transform.Find("Canvas").gameObject;
-        mainCam = player.transform.Find("Main Camera");
+        mainCam = Camera.main.transform;
         title = canvas.transform.Find("Title").GetComponent<TextMeshProUGUI>();
         
         targetPos = mainCam.position;
@@ -66,18 +66,25 @@ public class StartScreenScript : MonoBehaviour
 
         if (IsCamAtTarget())
         {
-            ToggleGameActors();
+            EnableGameActors();
             translateCam = false;
         }
     }
     
     
-    private void ToggleGameActors()
+    private void EnableGameActors()
     {
-        player.SetActive(!player.activeSelf);
-        gameHandler.SetActive(!gameHandler.activeSelf);
+        player.GetComponent<V2PlayerMovement>().enabled = true;
+        player.transform.Find("Canvas").gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.Locked;
+
+        GameObject flyingBurger = GameObject.Find("FlyingBurger");
+        flyingBurger.GetComponent<BurgerScript>().enabled = true;
+        flyingBurger.GetComponent<HealthHandler>().enabled = true;
+        
+        gameHandler.SetActive(true);
         gameHandler.GetComponent<GameHandler>().AnnounceNextRound();
-        gameObject.SetActive(!gameObject.activeSelf);
+        gameObject.SetActive(false);
     }
     
 

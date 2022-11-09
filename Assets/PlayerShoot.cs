@@ -7,17 +7,12 @@ using Random = UnityEngine.Random;
 
 public class PlayerShoot : MonoBehaviour
 {
-    
     private PlayerGunInfo gunInfo;
     private Vector3 recoilPos;
 
     private void Awake()
     {
         gunInfo = GetComponent<PlayerGunInfo>();
-    }
-
-    void Start()
-    {
     }
 
 

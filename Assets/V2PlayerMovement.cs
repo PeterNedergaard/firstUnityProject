@@ -26,7 +26,7 @@ public class V2PlayerMovement : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         layerMask = ~layerMask;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
 

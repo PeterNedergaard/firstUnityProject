@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PlayerGunInteract : MonoBehaviour
 {
-    
     private PlayerGunInfo gunInfo;
     
     
@@ -69,6 +68,7 @@ public class PlayerGunInteract : MonoBehaviour
             gunInfo.pickUp = true;
             gunInfo.gunObject = gunObj;
             gunInfo.gunScript = gunObj.GetComponent<GunScript>();
+            // gunInfo.getMag();
         }
     }
     

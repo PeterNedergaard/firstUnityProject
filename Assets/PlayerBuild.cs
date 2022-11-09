@@ -52,22 +52,19 @@ public class PlayerBuild : MonoBehaviour
                 
                 ghostBarrier.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             }
-            
-            
 
-            
             // Place barrier
             if (Input.GetMouseButtonDown(0))
             {
                 GameObject barrierObj = Instantiate(barrierObject, hit.point, Quaternion.identity).GameObject();
                 GameObject barrierModel = Instantiate(barriers[barrierIndex], hit.point, ghostBarrier.transform.rotation).GameObject();
-
-                BarrierHpBar barrierHpBar = barrierObj.GetComponent<BarrierHpBar>();
-                BarrierScript barrierScript = barrierModel.GetComponent<BarrierScript>();
-
-                barrierHpBar._barrierScript = barrierScript;
-                barrierScript._barrierHpBar = barrierHpBar;
                 
+                HealthHandler hh = barrierObj.GetComponent<HealthHandler>();
+                BarrierScript bs = barrierModel.GetComponent<BarrierScript>();
+                hh.maxHealth = bs.maxHealth;
+                bs.healthHandler = hh;
+                hh.health = hh.maxHealth;
+
                 barrierModel.GetComponent<MeshCollider>().convex = true;
                 barrierModel.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 barrierModel.transform.SetParent(barrierObj.transform);
