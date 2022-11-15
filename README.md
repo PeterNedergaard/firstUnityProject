@@ -25,3 +25,16 @@ The storyline or purpose is still not present.
 - Enemy now has model and animations
 - Enemy ragdolls when dead
 - Enemy can, and will, hurt you
+
+&nbsp;
+
+## Third iteration of the game (16/11/2022):
+
+The game now has a purpose. Prevent the zombies from destroying the almighty burger.
+#### The features include:
+- A map in a modern city, where the action takes place
+- A start-screen with the options to 'Start game' or 'Quit'
+- The Enemy target is now the burger instead of the player
+- Implemented building hammer
+- While wielding the hammer, the player can place a structure
+- The player can change which structure is placed, by right-clicking
