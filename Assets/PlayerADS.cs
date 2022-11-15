@@ -21,7 +21,7 @@ public class PlayerADS : MonoBehaviour
 
     void Start()
     {
-        adsPos = new Vector3(0, 0.55f, 1f);
+        adsPos = new Vector3(0, 0.485f, 1f);
         hipPos = transform.Find("GunObject").localPosition;
     }
     

@@ -100,6 +100,7 @@ public class GameHandler : MonoBehaviour
             enemy.transform.position = spawnPos;
             
             enemy.SetActive(true);
+            eb.navMeshAgent.SetDestination(eb.target.position);
             aliveEnemyAmnt += 1;
 
             yield return new WaitForSeconds(0.2f);
@@ -141,7 +142,7 @@ public class GameHandler : MonoBehaviour
     {
         while (t < 1)
         {
-            if (Time.time - roundInfoTimer > 2)
+            if (Time.time - roundInfoTimer > 10)
             {
                 canvasGroup.alpha = Mathf.Lerp(1, 0, t);
             

@@ -38,7 +38,7 @@ public class PlayerRecoil : MonoBehaviour
 
                 if (bolt.localPosition != zeroPos)
                 {
-                    bolt.localPosition = Vector3.MoveTowards(bolt.localPosition, zeroPos, 0.025f);
+                    bolt.localPosition = Vector3.MoveTowards(bolt.localPosition, zeroPos, 0.07f);
                 }
             }
             
@@ -63,15 +63,14 @@ public class PlayerRecoil : MonoBehaviour
         
         
         // Bolt movement limited to the UZI
-        var gunObj = gunInfo.gunObject;
-        
-        if (gunObj.name.Equals("UZI"))
+
+        if (gunInfo.gunObject.name.Equals("UZI"))
         {
-            var bolt = gunObj.transform.Find("Bolt");
+            float boltRecoil = -0.02f;
         
-            if (bolt.localPosition.z > -0.08)
+            if (bolt.localPosition.z > boltRecoil)
             {
-                bolt.localPosition = new Vector3(0, 0.021f, -0.08f);
+                bolt.localPosition = new Vector3(0, 0.021f, boltRecoil);
             }
             
         }

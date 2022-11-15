@@ -15,10 +15,6 @@ GameObject:
   - component: {fileID: 3551512543028794314}
   - component: {fileID: -3048350797733697116}
   - component: {fileID: 2588438079192745426}
-  - component: {fileID: 2633147243783880509}
-  - component: {fileID: 3257180852954453291}
-  - component: {fileID: 1787991234952728418}
-  - component: {fileID: 3451400865917584801}
   m_Layer: 0
   m_Name: BarbedWireMetalFence_26_v1
   m_TagString: Barrier
@@ -100,7 +96,7 @@ MeshCollider:
   m_GameObject: {fileID: 3264894628783676347}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -146,57 +142,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.09043908, y: 1.4327724, z: 0.0861122}
-  m_Center: {x: 0.5947145, y: 0.6486782, z: -0.020373968}
---- !u!65 &2633147243783880509
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3264894628783676347}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.08577216, y: 1.4327724, z: 0.07111813}
-  m_Center: {x: -0.5819871, y: 0.6486782, z: -0.015860692}
---- !u!65 &3257180852954453291
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3264894628783676347}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2648072, y: 0.06914288, z: 0.11141919}
-  m_Center: {x: 0.007530451, y: 0.16219187, z: -0.032271538}
---- !u!65 &1787991234952728418
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3264894628783676347}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2648072, y: 0.066533685, z: 0.08922622}
-  m_Center: {x: 0.007530451, y: 0.59957594, z: -0.02650119}
---- !u!65 &3451400865917584801
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3264894628783676347}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2648072, y: 0.07774377, z: 0.08133294}
-  m_Center: {x: 0.007530451, y: 1.0356679, z: -0.006741859}
+  m_Size: {x: 1.259805, y: 1.4327724, z: 0.1629071}
+  m_Center: {x: 0.010031581, y: 0.6486782, z: -0.014603693}

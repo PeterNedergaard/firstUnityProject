@@ -13,12 +13,11 @@ public class EnemyBehaviour : MonoBehaviour
     [NonSerialized] public bool dead;
     [NonSerialized] public NavMeshAgent navMeshAgent;
     private GameHandler gameHandler;
-    private Transform target;
+    [NonSerialized] public Transform target;
     private CapsuleCollider attackArmCollider;
     private float barrierDmgTimer;
     private float maxMoveSpeed;
     private float timeSinceUpdate;
-    private float pathUpdateInterval = 0.5f;
 
 
     private void Awake()
@@ -45,18 +44,12 @@ public class EnemyBehaviour : MonoBehaviour
         if (!dead)
         {
             navMeshAgent.isStopped = false;
-            // Update path
-            if (Time.time - timeSinceUpdate > pathUpdateInterval)
-            {
-                navMeshAgent.SetDestination(target.position);
-                timeSinceUpdate = Time.time;
-            }
 
             // Start walk animation
             m_animator.SetFloat("MoveSpeed", navMeshAgent.speed * 3);
 
             // Start or stop attacking
-            if (Vector3.Distance(transform.position, target.position) < 1.5f)
+            if (Vector3.Distance(transform.position, target.position) < 1.3)
             {
                 m_animator.SetTrigger("Attack");
                 navMeshAgent.speed = 0;
@@ -101,14 +94,12 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collisionInfo.gameObject.CompareTag("Barrier"))
         {
-            Debug.Log("Barrier collision");
             BarrierScript barrierScript = collisionInfo.gameObject.GetComponent<BarrierScript>();
             
             if (Time.time - barrierDmgTimer > barrierScript.dmgDelay && barrierScript.damage > 0)
             {
                 barrierDmgTimer = Time.time;
                 healthHandler.TakeDamage(barrierScript.damage);
-                Debug.Log("Take damage");
             }
         }
     }

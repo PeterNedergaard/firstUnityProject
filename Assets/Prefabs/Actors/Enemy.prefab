@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 4451639191276614}
   - component: {fileID: 6335572663705973594}
   - component: {fileID: 14312977119221235}
-  m_Layer: 17
+  m_Layer: 19
   m_Name: basic_rig L Hand
   m_TagString: EnemyArm
   m_Icon: {fileID: 0}

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 9133551355259535177}
   - component: {fileID: 4937831019590642241}
   - component: {fileID: 2074120949769945294}
-  - component: {fileID: 1044174597902878092}
-  m_Layer: 0
+  - component: {fileID: 6258835475341044538}
+  m_Layer: 18
   m_Name: FlyingBurger
   m_TagString: BurgerStand
   m_Icon: {fileID: 0}
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 500
   canvas: {fileID: 6480589544084723479}
---- !u!136 &1044174597902878092
-CapsuleCollider:
+--- !u!65 &6258835475341044538
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,10 +92,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.25, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.9930247, y: 1.9806747, z: 1.0765033}
+  m_Center: {x: -0.015784383, y: 1.2407036, z: 0.009772539}
 --- !u!1 &909189474567227107
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6838562286559248655}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Stand
   m_TagString: BurgerStand
   m_Icon: {fileID: 0}
@@ -142,7 +141,7 @@ GameObject:
   - component: {fileID: 7246075448875557693}
   - component: {fileID: 9145198116689442796}
   - component: {fileID: 4905494245992489842}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +237,7 @@ GameObject:
   - component: {fileID: 7455419348009484698}
   - component: {fileID: 5770345613065315518}
   - component: {fileID: 6996490680949012572}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Glass
   m_TagString: BurgerStand
   m_Icon: {fileID: 0}
@@ -322,7 +321,7 @@ GameObject:
   - component: {fileID: 5472885354911114998}
   - component: {fileID: 915992433031138674}
   - component: {fileID: 1450483923799666325}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +417,7 @@ GameObject:
   - component: {fileID: 2603894499890314074}
   - component: {fileID: 2872025701225977690}
   - component: {fileID: 2913301836282825257}
-  m_Layer: 17
+  m_Layer: 18
   m_Name: HPbarGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7582817330792553162}
   - component: {fileID: 4559277704578758052}
-  m_Layer: 17
+  m_Layer: 18
   m_Name: HPbars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -584,7 +583,7 @@ GameObject:
   - component: {fileID: 8781026318927612195}
   - component: {fileID: 3965073087646607452}
   - component: {fileID: 4260976655158149543}
-  m_Layer: 17
+  m_Layer: 18
   m_Name: HPbarRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +660,7 @@ GameObject:
   - component: {fileID: 5900450897070545199}
   - component: {fileID: 3109507958586151334}
   - component: {fileID: 3784755925429866472}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +757,7 @@ GameObject:
   - component: {fileID: 8955945345530193595}
   - component: {fileID: 8108186426304728816}
   - component: {fileID: 3726096914725797781}
-  m_Layer: 16
+  m_Layer: 18
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -854,9 +853,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3104982486330945122}
     m_Modifications:
+    - target: {fileID: 1214926747996270, guid: 6a21df4da585e0946a2b991447fabcc6, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 1756696917985646, guid: 6a21df4da585e0946a2b991447fabcc6, type: 3}
       propertyPath: m_Name
       value: burger prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756696917985646, guid: 6a21df4da585e0946a2b991447fabcc6, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1756696917985646, guid: 6a21df4da585e0946a2b991447fabcc6, type: 3}
       propertyPath: m_TagString

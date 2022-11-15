@@ -14,8 +14,11 @@ public class RagdollHandler : MonoBehaviour
 
         foreach (var component in GetComponentsInChildren<Rigidbody>())
         {
-            component.isKinematic = !state;
-            component.useGravity = state;
+            if (!component.name.Equals("basic_rig L Hand"))
+            {
+                component.isKinematic = !state;
+                component.useGravity = state;
+            }
         }
     }
     
