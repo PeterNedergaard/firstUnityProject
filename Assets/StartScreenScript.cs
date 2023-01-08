@@ -83,7 +83,8 @@ public class StartScreenScript : MonoBehaviour
         flyingBurger.GetComponent<HealthHandler>().enabled = true;
         
         gameHandler.SetActive(true);
-        gameHandler.GetComponent<GameHandler>().AnnounceNextRound();
+        gameHandler.GetComponent<GameHandler>().RestartGame();
+
         gameObject.SetActive(false);
     }
     
@@ -91,15 +92,15 @@ public class StartScreenScript : MonoBehaviour
     private bool IsCamAtTarget()
     {
         bool result = false;
-        float posDiff = startCam.position.sqrMagnitude - mainCam.position.sqrMagnitude;
+        float posDiff = startCam.position.sqrMagnitude - targetPos.sqrMagnitude;
         
         if (posDiff < 0) posDiff *= -1;
-
+        
         if (posDiff < 1)
         {
             result = true;
         }
-
+        
         return result;
     }
 
@@ -119,14 +120,39 @@ public class StartScreenScript : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        player.SetActive(false);
+        startCam.GetComponent<AudioListener>().enabled = true;
+        
+        targetPos = mainCam.position;
+        targetRot = mainCam.eulerAngles;
+
+        canvas.SetActive(true);
+        title.text = "GAME OVER";
+        transform.Find("CameraPivot").GetComponent<Animation>().enabled = true;
+        
+        player.GetComponent<V2PlayerMovement>().enabled = false;
+        player.transform.Find("Canvas").gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Confined;
+
+        GameObject flyingBurger = GameObject.Find("FlyingBurger");
+        flyingBurger.GetComponent<BurgerScript>().enabled = false;
+        flyingBurger.GetComponent<HealthHandler>().enabled = false;
+        gameHandler.GetComponent<GameHandler>().ClearEnemies();
+
+        gameHandler.SetActive(false);
+        gameObject.SetActive(true);
+    }
     
     void StartGame()
     {
+        player.SetActive(true);
+        startCam.GetComponent<AudioListener>().enabled = false;
+        
         translateCam = true;
         canvas.SetActive(false);
         transform.Find("CameraPivot").GetComponent<Animation>().enabled = false;
-        
-        if (startCam.eulerAngles.y > 180) targetRot.y += 360;
     }
 
     void QuitGame()

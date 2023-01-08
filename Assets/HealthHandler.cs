@@ -61,6 +61,9 @@ public class HealthHandler : MonoBehaviour
 
     
     
+    
+    
+    
     IEnumerator StartHpBarFade()
     {
         hpBarTimer = Time.time;

@@ -4,19 +4,26 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerReload : MonoBehaviour
 {
+    
+    [SerializeField] private AudioClip magReleaseClip;
+    [SerializeField] private AudioClip magInsertClip;
+    
     private float reloadTime;
     private float reloadDelay;
     private List<Transform> magList;
     private bool reloading;
     private PlayerGunInfo gunInfo;
+    private AudioSource audioSrc;
 
     private void Awake()
     {
         gunInfo = GetComponent<PlayerGunInfo>();
         magList = new List<Transform>();
+        audioSrc = GetComponent<AudioSource>();
     }
     
 
@@ -58,6 +65,10 @@ public class PlayerReload : MonoBehaviour
         
         gunInfo.magParent = newMag.transform;
         gunInfo.gunScript.ammoInMag = gunInfo.gunScript.maxAmmo;
+        
+        float pitch = Random.Range(0.85f, 1.15f);
+        audioSrc.pitch = pitch;
+        audioSrc.PlayOneShot(magInsertClip, 0.15f);
     }
     
     private void removeMag()
@@ -71,6 +82,10 @@ public class PlayerReload : MonoBehaviour
 
             magList.Add(gunInfo.magParent);
             gunInfo.magParent = null;
+            
+            float pitch = Random.Range(0.85f, 1.15f);
+            audioSrc.pitch = pitch;
+            audioSrc.PlayOneShot(magReleaseClip, 0.15f);
         }
         
         if (magList.Count > 10)

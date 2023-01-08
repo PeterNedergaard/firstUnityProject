@@ -7,15 +7,18 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 public class PlayerBuild : MonoBehaviour
 {
 
     [SerializeField] private List<Object> barriers;
     [SerializeField] private GameObject barrierObject;
+    [SerializeField] private AudioClip buildClip;
     private PlayerGunInfo _playerGunInfo;
     private int barrierIndex;
     private GameObject ghostBarrier;
+    private AudioSource audiosrc;
     
     private Camera mainCamera;
     private RaycastHit hit;
@@ -27,6 +30,7 @@ public class PlayerBuild : MonoBehaviour
         _playerGunInfo = GetComponent<PlayerGunInfo>();
         mainCamera = Camera.main;
         _layerMask = ~LayerMask.GetMask("Barrier", "Enemy");
+        audiosrc = GetComponent<AudioSource>();
     }
     
 
@@ -41,7 +45,7 @@ public class PlayerBuild : MonoBehaviour
             // Either create or reposition the transparent barrier
             if (!ghostBarrier)
             {
-                SetGhostBarrier();
+                NextGhostBarrier();
             }
             else
             {
@@ -68,6 +72,10 @@ public class PlayerBuild : MonoBehaviour
                 barrierModel.GetComponent<MeshCollider>().convex = true;
                 barrierModel.AddComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 barrierModel.transform.SetParent(barrierObj.transform);
+                
+                float pitch = Random.Range(0.9f, 1.1f);
+                audiosrc.pitch = pitch;
+                audiosrc.PlayOneShot(buildClip, 0.1f);
             }
             
             // Change barrier
@@ -80,7 +88,7 @@ public class PlayerBuild : MonoBehaviour
                     barrierIndex = 0;
                 }
                 
-                SetGhostBarrier();
+                NextGhostBarrier();
             }
             
         }
@@ -95,7 +103,7 @@ public class PlayerBuild : MonoBehaviour
     }
 
 
-    void SetGhostBarrier()
+    void NextGhostBarrier()
     {
         if (ghostBarrier)
         {

@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: -4115557174280044339}
   - component: {fileID: 8992424491923754823}
   - component: {fileID: 5191031560353494759}
+  - component: {fileID: -7112604854555010988}
   m_Layer: 17
   m_Name: Enemy
   m_TagString: Enemy
@@ -620,10 +621,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 672ad83f64a237342905c1332fc9675b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 10
   m_animator: {fileID: 95446636183784616}
   attackArm: {fileID: 4451639191276614}
   healthHandler: {fileID: 5191031560353494759}
-  damageAmount: 10
+  hitClip: {fileID: 8300000, guid: 17aa3a8a9124fc94c9628e7d42804dfa, type: 3}
+  deathClip: {fileID: 8300000, guid: 58f355da977f0a147bfaf628e58736b9, type: 3}
 --- !u!114 &8992424491923754823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +653,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   canvas: {fileID: 4199555250820899207}
+--- !u!114 &-7112604854555010988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190601789873990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a908087c186b6ec4ca4e2b139a18ae8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1236329582464368
 GameObject:
   m_ObjectHideFlags: 0

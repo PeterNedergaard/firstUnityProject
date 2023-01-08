@@ -24,6 +24,7 @@ public class GunScript : MonoBehaviour
     private GameObject muzzleFlash;
     private GameObject muzzleFlashObject;
     private PlayerRecoil playerRecoil;
+    private AudioSource audioSrc;
 
 
     private void Awake()
@@ -31,6 +32,7 @@ public class GunScript : MonoBehaviour
         barrelObject = transform.Find("Barrel").gameObject;
         muzzleFlashObject = transform.Find("MuzzleFlashObject").gameObject;
         playerRecoil = GameObject.Find("Player").GetComponent<PlayerRecoil>();
+        audioSrc = GetComponent<AudioSource>();
 
         bulletSpawnOffset = barrelObject.transform.localScale.z / 2;
         ammoInMag = maxAmmo;
@@ -67,6 +69,11 @@ public class GunScript : MonoBehaviour
             
             // Recoil
             playerRecoil.ApplyRecoil();
+            
+            // Sound
+            float pitch = Random.Range(0.95f, 1.05f);
+            audioSrc.pitch = pitch;
+            audioSrc.PlayOneShot(audioSrc.clip);
         }
     }
 

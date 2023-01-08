@@ -82,6 +82,31 @@ public class GameHandler : MonoBehaviour
     }
 
 
+    public void RestartGame()
+    {
+        roundNumber = 1;
+        enemyDamage = 1;
+        enemySpeed = 1;
+        inRound = false;
+
+        ClearEnemies();
+        
+        enemyAmount = 5;
+        
+        StartCoroutine(InstantiateEnemies());
+        AnnounceNextRound();
+    }
+
+    public void ClearEnemies()
+    {
+        for (int i = 0; i < enemyList.Count - 1; i++)
+        {
+            Destroy(enemyList[i]);
+        }
+        
+        enemyList.Clear();
+    }
+    
     IEnumerator SpawnEnemies()
     {
         aliveEnemyAmnt = 0;

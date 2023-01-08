@@ -3,18 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    public float damageAmount;
     [SerializeField] private Animator m_animator;
     [SerializeField] private Transform attackArm;
     [SerializeField] private HealthHandler healthHandler;
-    public float damageAmount;
+    [SerializeField] private AudioClip hitClip;
+    [SerializeField] private AudioClip deathClip;
     [NonSerialized] public bool dead;
     [NonSerialized] public NavMeshAgent navMeshAgent;
-    private GameHandler gameHandler;
     [NonSerialized] public Transform target;
+    private GameHandler gameHandler;
     private CapsuleCollider attackArmCollider;
+    private AudioHandler audioHandler;
     private float barrierDmgTimer;
     private float maxMoveSpeed;
     private float timeSinceUpdate;
@@ -27,6 +31,7 @@ public class EnemyBehaviour : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         m_animator = GetComponent<Animator>();
         maxMoveSpeed = navMeshAgent.speed;
+        audioHandler = GetComponent<AudioHandler>();
         
         attackArmCollider = attackArm.GetComponent<CapsuleCollider>();
         attackArmCollider.enabled = false;
@@ -85,6 +90,9 @@ public class EnemyBehaviour : MonoBehaviour
             if (collision.gameObject.CompareTag("Bullet"))
             {
                 healthHandler.TakeDamage(collision.gameObject.GetComponent<BulletBehavior>().bulletDamage);
+                
+                float pitch = Random.Range(0.9f, 1.1f);
+                audioHandler.PlayClipAt(hitClip, transform.position, 0.35f, pitch);
             }
         }
     }
@@ -110,6 +118,10 @@ public class EnemyBehaviour : MonoBehaviour
         dead = true;
         gameHandler.aliveEnemyAmnt -= 1;
         GetComponent<RagdollHandler>().GoRagdoll(true);
+        
+        float pitch = Random.Range(0.4f, 0.8f);
+        audioHandler.PlayClipAt(deathClip, transform.position, 1f, pitch);
+
 
         StartCoroutine(StartDecay());
     }

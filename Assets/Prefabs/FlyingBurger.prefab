@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4937831019590642241}
   - component: {fileID: 2074120949769945294}
   - component: {fileID: 6258835475341044538}
+  - component: {fileID: -1525589536583508744}
   m_Layer: 18
   m_Name: FlyingBurger
   m_TagString: BurgerStand
@@ -68,6 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthHandler: {fileID: 2074120949769945294}
+  hitClip: {fileID: 8300000, guid: 969cb7b988ffbec4ea40f331a65b04dd, type: 3}
+  deathClip: {fileID: 8300000, guid: c634a7de1f8fb0846824bf548ea23d59, type: 3}
 --- !u!114 &2074120949769945294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +98,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9930247, y: 1.9806747, z: 1.0765033}
   m_Center: {x: -0.015784383, y: 1.2407036, z: 0.009772539}
+--- !u!114 &-1525589536583508744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275867364489026727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a908087c186b6ec4ca4e2b139a18ae8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &909189474567227107
 GameObject:
   m_ObjectHideFlags: 0
