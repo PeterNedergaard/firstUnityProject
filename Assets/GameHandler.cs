@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class GameHandler : MonoBehaviour
 {
-
     [SerializeField] private Transform canvas;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform spawnPointsObj;

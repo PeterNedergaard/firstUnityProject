@@ -11,7 +11,6 @@ using Random = UnityEngine.Random;
 
 public class PlayerBuild : MonoBehaviour
 {
-
     [SerializeField] private List<Object> barriers;
     [SerializeField] private GameObject barrierObject;
     [SerializeField] private AudioClip buildClip;
