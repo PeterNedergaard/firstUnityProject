@@ -38,3 +38,20 @@ The game now has a purpose. Prevent the zombies from destroying the almighty bur
 - Implemented building hammer
 - While wielding the hammer, the player can place a structure
 - The player can change which structure is placed, by right-clicking
+
+&nbsp;
+
+## Fourth(last) iteration of the game (08/01/2023):
+
+#### The features include:
+- 'Game Over' screen
+- Audio for the following:
+  - Shooting
+  - Reloading
+  - Hitting and enemy
+  - Enemy dying
+  - Enemy hitting The Burger
+  - The Burger dying
+  - Building a barrier
+  - Menu BGM
+  - In-game BGM
