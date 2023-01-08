@@ -122,7 +122,6 @@ public class EnemyBehaviour : MonoBehaviour
         float pitch = Random.Range(0.4f, 0.8f);
         audioHandler.PlayClipAt(deathClip, transform.position, 1f, pitch);
 
-
         StartCoroutine(StartDecay());
     }
 

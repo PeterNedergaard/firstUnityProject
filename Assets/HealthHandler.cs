@@ -29,7 +29,7 @@ public class HealthHandler : MonoBehaviour
         Vector3 worldPos = transform.position;
         worldPos.y += transform.localScale.y;
 
-        hpBars.position  = mainCam.WorldToScreenPoint(worldPos);
+        hpBars.position = mainCam.WorldToScreenPoint(worldPos);
 
         if (hpBars.position.z < 0)
         {

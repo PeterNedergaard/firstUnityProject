@@ -18,7 +18,6 @@ public class PlayerAnimation : MonoBehaviour
         m_animator = GetComponent<Animator>();
         upperBody = transform.Find("Armature/Root_M/Spine1_M");
         rightHandObj = transform.Find("Armature/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/Elbow_R/Wrist_R");
-
     }
 
     void Start()

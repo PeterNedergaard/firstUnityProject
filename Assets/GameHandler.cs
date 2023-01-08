@@ -44,8 +44,6 @@ public class GameHandler : MonoBehaviour
         {
             spawnPointList.Add(spawnPoint);
         }
-
-        StartCoroutine(InstantiateEnemies());
     }
     
     
@@ -60,7 +58,7 @@ public class GameHandler : MonoBehaviour
     }
 
 
-    public void AnnounceNextRound()
+    private void AnnounceNextRound()
     {
         roundTitle.text = "ROUND " + roundNumber;
         AmountInfo.text = enemyAmount.ToString();
@@ -87,12 +85,11 @@ public class GameHandler : MonoBehaviour
         roundNumber = 1;
         enemyDamage = 1;
         enemySpeed = 1;
+        enemyAmount = 5;
         inRound = false;
 
         ClearEnemies();
-        
-        enemyAmount = 5;
-        
+
         StartCoroutine(InstantiateEnemies());
         AnnounceNextRound();
     }
